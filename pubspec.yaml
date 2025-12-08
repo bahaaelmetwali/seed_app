@@ -37,6 +37,9 @@ dependencies:
   go_router: ^17.0.0
   google_fonts: ^6.3.3
   flutter_screenutil: ^5.9.3
+  dartz: ^0.10.1
+  dio: ^5.9.0
+  internet_connection_checker: ^3.0.1
 
 dev_dependencies:
   flutter_test:
