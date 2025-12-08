@@ -81,3 +81,8 @@ class ServiceFailure extends Failure {
     }
   }
 }
+
+class NoNetworkFailure extends Failure {
+  NoNetworkFailure() : super('لا يوجد اتصال بالإنترنت');
+
+}
