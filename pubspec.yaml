@@ -22,6 +22,7 @@ dependencies:
   internet_connection_checker: ^3.0.1
   get_it: ^9.2.0
   shared_preferences: ^2.5.3
+  flutter_svg: ^2.2.3
 
 dev_dependencies:
   flutter_test:
@@ -32,14 +33,11 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
-
+  assets:
+    - assets/logos/
   fonts:
     - family: Avenir
       fonts:
-        - asset: assets/fonts/venir Light.ttf
-        - asset: assets/fonts/venir Regular.ttf
-        - asset: assets/fonts/venir Heavy.ttf
+        - asset: assets/fonts/Avenir_Light.ttf
+        - asset: assets/fonts/Avenir_Regular.ttf
+        - asset: assets/fonts/Avenir_Heavy.ttf

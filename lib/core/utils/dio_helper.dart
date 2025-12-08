@@ -4,7 +4,8 @@ import 'package:seed_app/core/utils/cache_helper.dart';
 import 'package:seed_app/features/log_out_stream.dart';
 
 class DioHelper {
-  static const String baseUrl = 'https://backend.seed.moltaqadev.com/client-api/v1/';
+  static const String baseUrl =
+      'https://backend.seed.moltaqadev.com/client-api/v1/';
   DioHelper();
   Dio createDio() {
     final dio = Dio(
@@ -49,8 +50,6 @@ class DioHelper {
             // Logout_Stream
             getIt<LogoutStream>().addEvent('logout');
             await getIt<CacheHelper>().clearUserData();
-
-     
           }
           handler.next(err);
         },
