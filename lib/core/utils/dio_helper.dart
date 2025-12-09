@@ -1,21 +1,21 @@
 import 'package:dio/dio.dart';
 import 'package:seed_app/core/service_locator.dart';
 import 'package:seed_app/core/utils/cache_helper.dart';
+import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/features/log_out_stream.dart';
 
 class DioHelper {
-  static const String baseUrl =
-      'https://backend.seed.moltaqadev.com/client-api/v1/';
   DioHelper();
   Dio createDio() {
     final dio = Dio(
       BaseOptions(
-        baseUrl: baseUrl,
+        baseUrl: Constants.baseUrl,
         validateStatus: (status) => status != null && status < 400,
         headers: {
           'Accept': 'application/json',
           'Accept-Language': 'ar',
           'Content-Type': 'application/json',
+          'Api-Key': Constants.apiKey,
         },
       ),
     );

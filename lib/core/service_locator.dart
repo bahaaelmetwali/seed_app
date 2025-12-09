@@ -10,7 +10,6 @@ import 'package:seed_app/features/auth/domain/use_cases/login_use_case.dart';
 import 'package:seed_app/features/auth/domain/use_cases/verification_use_case.dart';
 import 'package:seed_app/features/log_out_stream.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../features/auth/data/repo_impl/auth_repo_impl.dart';
 
 final getIt = GetIt.instance;
@@ -33,16 +32,17 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<LocalDataSource>(
     () => LocalDataSourceImpl(getIt<CacheHelper>()),
   );
+
   getIt.registerLazySingleton<AuthRepository>(
-    () => AuthRepoImpl(
-      getIt<AuthRemoteDataSourceImpl>(),
-      getIt<LocalDataSourceImpl>(),
-    ),
+    () => AuthRepoImpl(getIt<AuthRemoteDataSource>(), getIt<LocalDataSource>()),
   );
-    getIt.registerLazySingleton<LoginUseCase>(
-    () => LoginUseCase(getIt<AuthRepoImpl>()),
+
+  getIt.registerLazySingleton<LoginUseCase>(
+    () => LoginUseCase(getIt<AuthRepository>()),
   );
-    getIt.registerLazySingleton<VerificationUseCase>(
-    () => VerificationUseCase(getIt<AuthRepoImpl>()),
+
+  getIt.registerLazySingleton<VerificationUseCase>(
+    () => VerificationUseCase(getIt<AuthRepository>()),
   );
+
 }

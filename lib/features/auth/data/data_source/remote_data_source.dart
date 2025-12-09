@@ -23,7 +23,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       data: sendMobileRequestModel.toJson(),
     );
     final AuthResponseModel authResponseModel = AuthResponseModel.fromJson(
-      response,
+      response['data'],
     );
     return authResponseModel;
   }
