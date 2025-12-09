@@ -1,6 +1,7 @@
+import 'package:bloc/bloc.dart';
 import 'package:seed_app/features/auth/domain/entity/send_request.dart';
 import 'package:seed_app/features/auth/domain/use_cases/login_use_case.dart';
-import 'package:seed_app/features/auth/presentation/cubits/cubit/login_state.dart';
+import 'package:seed_app/features/auth/presentation/cubits/login/login_state.dart';
 
 
 class LoginCubit extends Cubit<LoginState> {
