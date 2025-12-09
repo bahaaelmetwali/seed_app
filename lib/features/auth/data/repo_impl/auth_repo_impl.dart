@@ -1,14 +1,12 @@
 import 'dart:core';
 
 import 'package:dartz/dartz.dart';
-import 'package:seed_app/core/utils/cache_helper.dart';
 import 'package:seed_app/core/utils/errors/failure.dart';
 import 'package:seed_app/core/utils/handle_request.dart';
 import 'package:seed_app/features/auth/data/data_source/local_data_source.dart';
 import 'package:seed_app/features/auth/data/data_source/remote_data_source.dart';
 import 'package:seed_app/features/auth/data/models/auth_response_model.dart';
 import 'package:seed_app/features/auth/data/models/send_request_model.dart';
-import 'package:seed_app/features/auth/data/models/user_model.dart';
 import 'package:seed_app/features/auth/data/models/verification_model.dart';
 import 'package:seed_app/features/auth/domain/entity/send_request.dart';
 import 'package:seed_app/features/auth/domain/entity/verification.dart';
