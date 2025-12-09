@@ -9,9 +9,11 @@ class CustomNavigationButton extends StatelessWidget {
     required this.solidText,
     required this.navigationText,
     required this.onPressed,
+    this.lineWidth,
   });
   final String solidText;
   final String navigationText;
+  final int? lineWidth;
   final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
@@ -39,7 +41,7 @@ class CustomNavigationButton extends StatelessWidget {
               SizedBox(height: 2.h),
               Container(
                 height: 2.h,
-                width: 115.w,
+                width: (lineWidth != null) ? lineWidth!.w : 115.w,
                 color: Constants.kPrimaryColor,
               ),
             ],
