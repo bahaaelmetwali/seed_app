@@ -1,6 +1,4 @@
-import 'package:seed_app/features/auth/domain/entity/user.dart';
-
-class Verification extends User {
+class Verification {
   final int verificationCode;
-  Verification(super.phone, {required this.verificationCode});
+  Verification({ required this.verificationCode});
 }

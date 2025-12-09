@@ -1,24 +1,38 @@
+import 'dart:core';
+
 import 'package:dartz/dartz.dart';
+import 'package:seed_app/core/utils/cache_helper.dart';
 import 'package:seed_app/core/utils/errors/failure.dart';
 import 'package:seed_app/core/utils/handle_request.dart';
+import 'package:seed_app/features/auth/data/data_source/local_data_source.dart';
 import 'package:seed_app/features/auth/data/data_source/remote_data_source.dart';
+import 'package:seed_app/features/auth/data/models/auth_response_model.dart';
+import 'package:seed_app/features/auth/data/models/send_request_model.dart';
 import 'package:seed_app/features/auth/data/models/user_model.dart';
 import 'package:seed_app/features/auth/data/models/verification_model.dart';
-import 'package:seed_app/features/auth/domain/entity/user.dart';
+import 'package:seed_app/features/auth/domain/entity/send_request.dart';
 import 'package:seed_app/features/auth/domain/entity/verification.dart';
 import 'package:seed_app/features/auth/domain/repo/auth_repository.dart';
 
 class AuthRepoImpl extends AuthRepository {
   final AuthRemoteDataSource _remoteDataSource;
-  AuthRepoImpl(this._remoteDataSource);
+
+  final LocalDataSource _localDataSource;
+  AuthRepoImpl(this._remoteDataSource, this._localDataSource);
 
   @override
-  Future<Either<Failure, Unit>> login(User user) async {
-    UserModel userModel = UserModel.fromEnity(user);
+  Future<Either<Failure, Unit>> login(SendRequest sendRequest) async {
+    SendMobileRequestModel sendMobileRequestModel =
+        SendMobileRequestModel.fromEnity(sendRequest);
 
     return handleRequest<Unit>(
       request: () async {
-        return await _remoteDataSource.login(userModel);
+        AuthResponseModel authResponseModel = await _remoteDataSource.login(
+          sendMobileRequestModel,
+        );
+        final String token = authResponseModel.accessToken;
+        _localDataSource.cacheToken(token);
+        return Future.value(unit);
       },
     );
   }

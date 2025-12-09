@@ -1,11 +1,33 @@
 import 'package:seed_app/features/auth/domain/entity/user.dart';
-
 class UserModel extends User {
-  UserModel(super.phone);
-  Map<String, dynamic> toJson() {
-    return {'mobile': phone};
+  const UserModel({
+    super.id,
+    super.name,
+    super.email,
+    required super.mobile,
+    super.image,
+    super.isVerified,
+  });
+
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id'],
+      name: json['name'],
+      email: json['email'],
+      mobile: json['mobile'],
+      image: json['image'],
+      isVerified: json['is_verified'],
+    );
   }
-  factory UserModel.fromEnity(User user){
- return UserModel(user.phone) ;
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'email': email,
+      'mobile': mobile,
+      'image': image,
+      'is_verified': isVerified,
+    };
   }
 }

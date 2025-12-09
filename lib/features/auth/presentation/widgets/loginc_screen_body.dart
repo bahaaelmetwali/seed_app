@@ -60,7 +60,12 @@ class LogincScreenBody extends StatelessWidget {
                       navigationText: 'ليس لديك حساب ؟',
                       onPressed: () {},
                     ),
-                    
+                    Spacer(),
+                    CustomButton(
+                      onPressed: () {},
+                      text: 'الدخول كزائر',
+                      isMainColor: false,
+                    ),
                   ],
                 ),
               ),

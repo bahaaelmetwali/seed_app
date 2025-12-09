@@ -84,5 +84,8 @@ class ServiceFailure extends Failure {
 
 class NoNetworkFailure extends Failure {
   NoNetworkFailure() : super('لا يوجد اتصال بالإنترنت');
+}
 
+class CachedFailure extends Failure {
+  CachedFailure() : super('لا يوجد توكين');
 }
