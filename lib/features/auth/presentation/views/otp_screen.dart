@@ -1,0 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/features/auth/presentation/widgets/otp_screen_body.dart';
+
+class OtpScreen extends StatelessWidget {
+  const OtpScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(backgroundColor: Constants.kPrimaryColor,
+    body: OtpScreenBody(),
+    );
+  }
+}
