@@ -21,7 +21,6 @@ class CustomButton extends StatelessWidget {
       child: Container(
         height: 66.h,
         width: double.infinity,
-
         decoration: BoxDecoration(
           border: Border.all(
             color: isMainColor ? Colors.white : Constants.kPrimaryColor,

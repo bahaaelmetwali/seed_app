@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/core/utils/styles.dart';
-import 'package:seed_app/core/utils/widgets/custom_buttons.dart';
-import 'package:seed_app/core/utils/widgets/custom_navigation_button.dart';
-import 'package:seed_app/core/utils/widgets/custom_text_form_field.dart';
+import 'package:seed_app/core/widgets/custom_buttons.dart';
+import 'package:seed_app/core/widgets/custom_navigation_button.dart';
+import 'package:seed_app/core/widgets/custom_text_form_field.dart';
 import 'package:seed_app/features/auth/presentation/widgets/back_ground_widget.dart';
 
 class LogincScreenBody extends StatelessWidget {
