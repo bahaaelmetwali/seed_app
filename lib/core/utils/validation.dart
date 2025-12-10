@@ -20,15 +20,6 @@ class Validator {
       return 'من فضلك ادخل رقم الهاتف';
     }
 
-    if (value.length != 10) {
-      return 'رقم الهاتف يجب أن يحتوي على 10 رقمًا';
-    }
-
-    final phoneRegex = RegExp(r'^(01)[0-9]{9}$');
-    if (!phoneRegex.hasMatch(value)) {
-      return 'من فضلك أدخل رقم هاتف مصري صحيح';
-    }
-
     return null;
   }
 
@@ -47,6 +38,15 @@ class Validator {
     }
     if (value != password) {
       return 'كلمة المرور غير متطابقة';
+    }
+    return null;
+  }
+
+  static String? otpValidator(value) {
+    if (value == null || value.isEmpty) {
+      return 'من فضلك ادخل الكود';
+    } else if (value.length < 4) {
+      return 'الكود يجب أن يكون 4 أرقام';
     }
     return null;
   }
