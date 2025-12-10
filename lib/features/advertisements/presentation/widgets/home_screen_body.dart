@@ -1,68 +1,118 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/core/utils/styles.dart';
+import 'package:seed_app/features/advertisements/presentation/widgets/home_app_bar.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        HomeAppBar(),
-      
-        SvgPicture.asset(
-          'assets/logos/home_background.svg',
-          height: 180.h,
-          width: 360.w,
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          HomeAppBar(),
+
+          Padding(
+            padding: EdgeInsets.all(16.r),
+            child: SvgPicture.asset(
+              'assets/logos/home_background.svg',
+              width: double.infinity,
+            ),
+          ),
+          CategoriesSection(),
+        ],
+      ),
     );
   }
 }
 
-class HomeAppBar extends StatefulWidget {
-  const HomeAppBar({super.key});
+class CategoriesSection extends StatefulWidget {
+  const CategoriesSection({super.key});
 
   @override
-  State<HomeAppBar> createState() => _HomeAppBarState();
+  State<CategoriesSection> createState() => _CategoriesSectionState();
 }
 
-class _HomeAppBarState extends State<HomeAppBar> {
+class _CategoriesSectionState extends State<CategoriesSection> {
+  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(20.r),
-          bottomRight: Radius.circular(20.r),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            spreadRadius: 0,
-            blurRadius: 1,
-            offset: const Offset(0, 2),
+    return Padding(
+      padding: EdgeInsets.all(16.r),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text('المدن', style: TextStyles.textStyle18),
+              Spacer(),
+
+              Column(
+                children: [
+                  Text(
+                    'عرض الكل',
+                    style: TextStyles.textStyle14.copyWith(
+                      color: Constants.kPrimaryColor,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Container(
+                    height: 2.h,
+                    width: 60.w,
+                    color: Constants.kPrimaryColor,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          SizedBox(height: 20.h),
+          SizedBox(
+            height: 60.h,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: Constants.cities.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.only(left: 8.r),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedIndex = index;
+                      });
+                    },
+                    child: Container(
+                      height: 45.h,
+                      width: 83.w,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: selectedIndex == index
+                              ? Constants.kPrimaryColor
+                              : Colors.white,
+                          width: 1.5.r,
+                        ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8.r),
+                      ),
+                      child: Center(
+                        child: Text(
+                          Constants.cities[index],
+                          style: TextStyles.textStyle16.copyWith(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
           ),
         ],
-      ),
-      child: Padding(
-        padding: EdgeInsets.only(
-          left: 24.w,
-          right: 24.w,
-          bottom: 24.h,
-          top: 36.h,
-        ),
-        child: Row(
-          children: [
-            SvgPicture.asset(
-              'assets/logos/app_bar_logo.svg',
-              height: 39.w,
-              width: 120.w,
-            ),
-          ],
-        ),
       ),
     );
   }
