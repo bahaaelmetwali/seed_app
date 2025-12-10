@@ -34,7 +34,7 @@ abstract class TextStyles {
   static final TextStyle textStyle12 = TextStyle(
     fontFamily: 'Avenir',
     fontSize: 12.sp,
-    fontWeight: FontWeight.w600,
+    fontWeight: FontWeight.w400,
   );
   static final TextStyle textStyle10 = TextStyle(
     fontFamily: 'Avenir',

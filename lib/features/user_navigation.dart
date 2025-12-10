@@ -34,7 +34,8 @@ class _UserHomeScreenState extends State<UserNavigation> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        body: screens[currentIndex],
+        body: IndexedStack(index: currentIndex, children: screens),
+
         bottomNavigationBar: Theme(
           data: Theme.of(context).copyWith(
             splashColor: Colors.transparent,

@@ -3,6 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/core/utils/styles.dart';
+
+import 'package:seed_app/features/advertisements/presentation/widgets/categories_section.dart';
 import 'package:seed_app/features/advertisements/presentation/widgets/home_app_bar.dart';
 
 class HomeScreenBody extends StatelessWidget {
@@ -10,110 +12,139 @@ class HomeScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          HomeAppBar(),
-
-          Padding(
-            padding: EdgeInsets.all(16.r),
-            child: SvgPicture.asset(
-              'assets/logos/home_background.svg',
-              width: double.infinity,
-            ),
+    return ListView(
+      children: [
+        HomeAppBar(),
+        Padding(
+          padding: EdgeInsets.only(top: 16.r, left: 16.r, right: 16.r),
+          child: SvgPicture.asset(
+            'assets/logos/home_background.svg',
+            height: 240.h,
+            width: 260.w,
           ),
-          CategoriesSection(),
-        ],
-      ),
+        ),
+        CategoriesSection(),
+        Expanded(
+          child: ListView.builder(
+            shrinkWrap: true,
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: 4,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: EdgeInsets.all(8.r),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16.r),
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(16.r),
+                    child: Row(
+                      children: [
+                        Container(
+                          height: 130.h,
+                          width: 100.w,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.r),
+                          ),
+                          child: Image.asset(
+                            'assets/icons/test.png',
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(width: 8.w),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'انشاء مركز طبي',
+                              style: TextStyles.textStyle16,
+                            ),
+                            SizedBox(height: 4.h),
+                            SectionDetails(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'تقييم المشروع:',
+                                  style: TextStyles.textStyle16.copyWith(
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                Text(
+                                  ' 1,000000',
+                                  style: TextStyles.textStyle16.copyWith(
+                                    color: Constants.kPrimaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
     );
   }
 }
 
-class CategoriesSection extends StatefulWidget {
-  const CategoriesSection({super.key});
+class SectionDetails extends StatelessWidget {
+  const SectionDetails({super.key});
 
-  @override
-  State<CategoriesSection> createState() => _CategoriesSectionState();
-}
-
-class _CategoriesSectionState extends State<CategoriesSection> {
-  int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(16.r),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Text('المدن', style: TextStyles.textStyle18),
-              Spacer(),
-
-              Column(
-                children: [
-                  Text(
-                    'عرض الكل',
-                    style: TextStyles.textStyle14.copyWith(
-                      color: Constants.kPrimaryColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Container(
-                    height: 2.h,
-                    width: 60.w,
-                    color: Constants.kPrimaryColor,
-                  ),
-                ],
-              ),
-            ],
-          ),
-          SizedBox(height: 20.h),
-          SizedBox(
-            height: 60.h,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: Constants.cities.length,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: EdgeInsets.only(left: 8.r),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedIndex = index;
-                      });
-                    },
-                    child: Container(
-                      height: 45.h,
-                      width: 83.w,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: selectedIndex == index
-                              ? Constants.kPrimaryColor
-                              : Colors.white,
-                          width: 1.5.r,
-                        ),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                      child: Center(
-                        child: Text(
-                          Constants.cities[index],
-                          style: TextStyles.textStyle16.copyWith(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                );
-              },
+    return Row(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomInfo(text: 'الرياض', iconPath: 'assets/icons/location.svg'),
+            CustomInfo(text: 'الكتروني', iconPath: 'assets/icons/location.svg'),
+          ],
+        ),
+        SizedBox(width: 30.w),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CustomInfo(
+              text: '100,000 ريال',
+              iconPath: 'assets/icons/money-send.svg',
             ),
-          ),
-        ],
-      ),
+            CustomInfo(
+              text: '25 %',
+              iconPath: 'assets/icons/percentage-circle.svg',
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+class CustomInfo extends StatelessWidget {
+  const CustomInfo({super.key, required this.text, required this.iconPath});
+  final String text;
+  final String iconPath;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SvgPicture.asset(iconPath),
+        SizedBox(width: 2.w),
+
+        Text(
+          text,
+          style: TextStyles.textStyle14.copyWith(fontWeight: FontWeight.w300),
+        ),
+      ],
     );
   }
 }
