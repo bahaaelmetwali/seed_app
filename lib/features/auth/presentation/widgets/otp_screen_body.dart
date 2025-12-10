@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/core/utils/styles.dart';
 import 'package:seed_app/core/widgets/custom_navigation_button.dart';
+import 'package:seed_app/features/auth/presentation/cubits/send_otp/send_otp_cubit.dart';
 import 'package:seed_app/features/auth/presentation/widgets/back_ground_widget.dart';
 import 'package:seed_app/features/auth/presentation/widgets/custom_pin_code_text_field.dart';
 import 'package:seed_app/features/auth/presentation/widgets/custom_rich_text.dart';
@@ -38,6 +40,13 @@ class _OtpScreenBodyState extends State<OtpScreenBody> {
     });
   }
 
+  @override
+  void dispose() {
+    otpController.dispose();
+    timer!.cancel();
+    super.dispose();
+  }
+
   final otpController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
@@ -53,61 +62,71 @@ class _OtpScreenBodyState extends State<OtpScreenBody> {
 
     return Form(
       key: _formKey,
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              BackGroundWidget(),
-              Container(
-                height: 650.h,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40.r),
-                    topRight: Radius.circular(40.r),
-                  ),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.all(30.r),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 10.h),
-                      Text(
-                        'تأكيد رقم الهاتف',
-                        style: TextStyles.textStyle20.copyWith(
-                          color: Constants.kPrimaryColor,
+      child: BlocBuilder<SendOtpCubit, SendOtpState>(
+        builder: (context, state) {
+          bool isLoading = state is SendOtpLoading;
+          return Directionality(
+            textDirection: TextDirection.rtl,
+            child: AbsorbPointer(
+              absorbing: isLoading,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    BackGroundWidget(),
+                    Container(
+                      height: 650.h,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(40.r),
+                          topRight: Radius.circular(40.r),
                         ),
                       ),
-                      SizedBox(height: 10.h),
-                      CustomRichText(
-                        minutes: minutes,
-                        remainingSecond: remainingSecond,
-                        phoneNumber: widget.phoneNumber,
+                      child: Padding(
+                        padding: EdgeInsets.all(30.r),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(height: 10.h),
+                            Text(
+                              'تأكيد رقم الهاتف',
+                              style: TextStyles.textStyle20.copyWith(
+                                color: Constants.kPrimaryColor,
+                              ),
+                            ),
+                            SizedBox(height: 10.h),
+                            CustomRichText(
+                              minutes: minutes,
+                              remainingSecond: remainingSecond,
+                              phoneNumber: widget.phoneNumber,
+                            ),
+                            SizedBox(height: 40.h),
+                            CustomPinCodeTextField(
+                              otpController: otpController,
+                            ),
+                            SizedBox(height: 40.h),
+                            OtpProcess(
+                              otpController: otpController,
+                              formKey: _formKey,
+                            ),
+                            CustomNavigationButton(
+                              solidText: 'لم تصلك رسالة تأكيد ؟',
+                              navigationText: 'اعادة ارسال الكود',
+                              lineWidth: 100,
+                              onPressed: () {},
+                            ),
+                            Spacer(),
+                          ],
+                        ),
                       ),
-                      SizedBox(height: 40.h),
-                      CustomPinCodeTextField(otpController: otpController),
-                      SizedBox(height: 40.h),
-                      OtpProcess(
-                        otpController: otpController,
-                        formKey: _formKey,
-                      ),
-                      CustomNavigationButton(
-                        solidText: 'لم تصلك رسالة تأكيد ؟',
-                        navigationText: 'اعادة ارسال الكود',
-                        lineWidth: 100,
-                        onPressed: () {},
-                      ),
-                      Spacer(),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       ),
     );
   }
