@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:seed_app/core/router/app_router_names.dart';
+import 'package:seed_app/features/advertisements/presentation/screens/home_screen.dart';
 import 'package:seed_app/features/auth/presentation/views/login_screen.dart';
 import 'package:seed_app/features/auth/presentation/views/otp_screen.dart';
+import 'package:seed_app/features/user_navigation.dart';
 
 abstract class AppRouter {
   static final GoRouter router = GoRouter(
@@ -21,6 +23,23 @@ abstract class AppRouter {
           final String phoneNumber = state.extra as String;
           return OtpScreen(phoneNumber: phoneNumber);
         },
+      ),
+
+       GoRoute(
+        path: AppRouterNames.homeUserScreen,
+        builder: (context, state) => const UserNavigation(currentIndex: 0),
+      ),
+      GoRoute(
+        path: AppRouterNames.myAdvertisments,
+        builder: (context, state) => const UserNavigation(currentIndex: 1),
+      ),
+        GoRoute(
+        path: AppRouterNames.addAdvertisment,
+        builder: (context, state) => const UserNavigation(currentIndex: 2),
+      ),
+      GoRoute(
+        path: AppRouterNames.moreScreen,
+        builder: (context, state) => const UserNavigation(currentIndex: 3),
       ),
     ],
   );

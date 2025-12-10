@@ -74,7 +74,7 @@ class _OtpScreenBodyState extends State<OtpScreenBody> {
                   children: [
                     BackGroundWidget(),
                     Container(
-                      height: 650.h,
+                      height: 620.h,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.white,

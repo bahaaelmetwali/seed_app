@@ -16,7 +16,7 @@ class OtpScreen extends StatelessWidget {
       create: (context) => SendOtpCubit(getIt<VerificationUseCase>()),
       child: Scaffold(
         backgroundColor: Constants.kPrimaryColor,
-        body: OtpScreenBody(phoneNumber: phoneNumber),
+        body: SafeArea(child: OtpScreenBody(phoneNumber: phoneNumber)),
       ),
     );
   }

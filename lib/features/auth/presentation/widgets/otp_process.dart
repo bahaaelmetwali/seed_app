@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:seed_app/core/router/app_router_names.dart';
 import 'package:seed_app/core/widgets/custom_buttons.dart';
 import 'package:seed_app/core/widgets/custom_loading_indicator.dart';
 import 'package:seed_app/core/widgets/show_custom_snack_bar.dart';
@@ -21,6 +23,7 @@ class OtpProcess extends StatelessWidget {
       listener: (context, state) {
         if (state is SendOtpSucess) {
           showCustomSnackBar(context, message: 'تم تسجيل الدخول بنجاح');
+          context.go(AppRouterNames.homeUserScreen);
         } else if (state is SendOtpFailure) {
           showCustomSnackBar(context, message: state.message, isError: true);
         }

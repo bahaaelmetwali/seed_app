@@ -39,6 +39,8 @@ flutter:
 
   assets:
     - assets/logos/
+    - assets/icons/
+
   fonts:
     - family: Avenir
       fonts:
