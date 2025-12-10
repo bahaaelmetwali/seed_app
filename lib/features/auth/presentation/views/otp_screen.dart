@@ -7,7 +7,8 @@ import 'package:seed_app/features/auth/presentation/cubits/send_otp/send_otp_cub
 import 'package:seed_app/features/auth/presentation/widgets/otp_screen_body.dart';
 
 class OtpScreen extends StatelessWidget {
-  const OtpScreen({super.key});
+  const OtpScreen({super.key, required this.phoneNumber});
+  final String phoneNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class OtpScreen extends StatelessWidget {
       create: (context) => SendOtpCubit(getIt<VerificationUseCase>()),
       child: Scaffold(
         backgroundColor: Constants.kPrimaryColor,
-        body: OtpScreenBody(),
+        body: OtpScreenBody(phoneNumber: phoneNumber),
       ),
     );
   }

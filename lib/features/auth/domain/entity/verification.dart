@@ -1,4 +1,4 @@
 class Verification {
-  final int verificationCode;
-  Verification({ required this.verificationCode});
+  final String verificationCode;
+  Verification({required this.verificationCode});
 }
