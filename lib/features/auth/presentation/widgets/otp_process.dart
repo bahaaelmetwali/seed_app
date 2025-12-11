@@ -8,7 +8,7 @@ import 'package:seed_app/core/widgets/show_custom_snack_bar.dart';
 import 'package:seed_app/features/auth/domain/entity/verification.dart';
 import 'package:seed_app/features/auth/presentation/cubits/send_otp/send_otp_cubit.dart';
 
-class OtpProcess extends StatelessWidget {
+class OtpProcess extends StatefulWidget {
   const OtpProcess({
     super.key,
     required this.otpController,
@@ -18,9 +18,15 @@ class OtpProcess extends StatelessWidget {
   final GlobalKey<FormState> formKey;
 
   @override
+  State<OtpProcess> createState() => _OtpProcessState();
+}
+
+class _OtpProcessState extends State<OtpProcess> {
+  @override
   Widget build(BuildContext context) {
     return BlocConsumer<SendOtpCubit, SendOtpState>(
       listener: (context, state) {
+          if (!mounted) return; 
         if (state is SendOtpSucess) {
           showCustomSnackBar(context, message: 'تم تسجيل الدخول بنجاح');
           context.go(AppRouterNames.homeUserScreen);
@@ -33,12 +39,14 @@ class OtpProcess extends StatelessWidget {
           return CustomLoadingIndicator();
         } else {
           return CustomButton(
-            onPressed: () {
-              if (formKey.currentState!.validate()) {
+            onPressed: () async {
+
+              if (widget.formKey.currentState!.validate()) {
+                final verificationCode = widget.otpController.text;
                 final Verification verification = Verification(
-                  verificationCode: otpController.text,
+                  verificationCode: verificationCode,
                 );
-                context.read<SendOtpCubit>().sendOtp(verification);
+                await context.read<SendOtpCubit>().sendOtp(verification);
               }
             },
             text: 'تأكيد',

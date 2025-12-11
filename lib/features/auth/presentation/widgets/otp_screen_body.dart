@@ -30,6 +30,7 @@ class _OtpScreenBodyState extends State<OtpScreenBody> {
 
   void startTimer() {
     timer = Timer.periodic(Duration(seconds: 1), (callback) {
+      if (!mounted) return;
       if (seconds > 0) {
         setState(() {
           seconds--;
@@ -42,8 +43,8 @@ class _OtpScreenBodyState extends State<OtpScreenBody> {
 
   @override
   void dispose() {
+    timer?.cancel();
     otpController.dispose();
-    timer!.cancel();
     super.dispose();
   }
 

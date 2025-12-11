@@ -25,72 +25,64 @@ class HomeScreenBody extends StatelessWidget {
           ),
         ),
         CategoriesSection(),
-        Expanded(
-          child: ListView.builder(
-            shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            itemCount: 2,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: EdgeInsets.all(8.r),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16.r),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(16.r),
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 110.h,
-                          width: 100.w,
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12.r),
-                          ),
-                          child: Image.asset(
-                            Assets.iconsTest,
-                            fit: BoxFit.cover,
-                          ),
+        ListView.builder(
+          shrinkWrap: true,
+          physics: NeverScrollableScrollPhysics(),
+          itemCount: 2,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: EdgeInsets.all(8.r),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16.r),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.all(16.r),
+                  child: Row(
+                    children: [
+                      Container(
+                        height: 110.h,
+                        width: 100.w,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.r),
                         ),
-                        SizedBox(width: 8.w),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'انشاء مركز طبي',
-                              style: TextStyles.textStyle16,
-                            ),
-                            SizedBox(height: 4.h),
-                            SectionDetails(),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'تقييم المشروع:',
-                                  style: TextStyles.textStyle16.copyWith(
-                                    fontWeight: FontWeight.w300,
-                                  ),
+                        child: Image.asset(Assets.iconsTest, fit: BoxFit.cover),
+                      ),
+                      SizedBox(width: 8.w),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('انشاء مركز طبي', style: TextStyles.textStyle16),
+                          SizedBox(height: 4.h),
+                          SectionDetails(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'تقييم المشروع:',
+                                style: TextStyles.textStyle16.copyWith(
+                                  fontWeight: FontWeight.w300,
                                 ),
-                                Text(
-                                  ' 1,000000',
-                                  style: TextStyles.textStyle16.copyWith(
-                                    color: Constants.kPrimaryColor,
-                                  ),
+                              ),
+                              Text(
+                                ' 1,000000',
+                                style: TextStyles.textStyle16.copyWith(
+                                  color: Constants.kPrimaryColor,
                                 ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       ],
     );
