@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:seed_app/constants/assets.dart';
 
-
 class HomeAppBar extends StatefulWidget {
   const HomeAppBar({super.key});
 

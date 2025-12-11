@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:seed_app/core/service_locator.dart';
 import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/features/advertisements/presentation/cubits/get_city/get_city_cubit.dart';
 import 'package:seed_app/features/advertisements/presentation/widgets/home_screen_body.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,9 +10,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Constants.kscaffoldColor,
-      body: SafeArea(child: HomeScreenBody()),
+    return BlocProvider(
+      create: (context) => getIt<GetCityCubit>(),
+      child: Scaffold(
+        backgroundColor: Constants.kscaffoldColor,
+        body: SafeArea(child: HomeScreenBody()),
+      ),
     );
   }
 }

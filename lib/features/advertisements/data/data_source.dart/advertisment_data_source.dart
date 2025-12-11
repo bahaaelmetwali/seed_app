@@ -11,9 +11,9 @@ class AdvertismentRemoteDataSourceImpl implements AdvertismentRemoteDataSource {
   @override
   Future<List<CityModel>> fetchCities() async {
     final response = await _apiService.get(endPoint: 'cities');
-    final listOfCities = response['data'] as List;
+    final listOfCities = response['data'] as List<Map<String, dynamic>>;
     final cities = listOfCities
-        .map((json) => CityModel.fromJson(json as Map<String, dynamic>))
+        .map((json) => CityModel.fromJson(json))
         .toList();
 
     return cities;
