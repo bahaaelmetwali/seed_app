@@ -44,7 +44,7 @@ class _CategoriesSectionState extends State<CategoriesSection> {
           ),
           SizedBox(height: 20.h),
           SizedBox(
-            height: 60.h,
+            height: 52.h,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: Constants.cities.length,
@@ -58,13 +58,13 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                       });
                     },
                     child: Container(
-                      height: 45.h,
+                      height: 48.h,
                       width: 83.w,
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: selectedIndex == index
                               ? Constants.kPrimaryColor
-                              : Colors.white,
+                              : Colors.grey.shade300,
                           width: 1.5.r,
                         ),
                         color: Colors.white,
@@ -75,7 +75,9 @@ class _CategoriesSectionState extends State<CategoriesSection> {
                           Constants.cities[index],
                           style: TextStyles.textStyle16.copyWith(
                             color: Colors.black,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: selectedIndex == index
+                                ? FontWeight.w500
+                                : FontWeight.w300,
                           ),
                           textAlign: TextAlign.center,
                         ),

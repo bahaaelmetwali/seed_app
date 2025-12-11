@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:seed_app/constants/assets.dart';
 import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/features/advertisements/presentation/screens/home_screen.dart';
 import 'package:seed_app/features/other_screens/add_advertisment.dart';
@@ -56,7 +57,7 @@ class _UserHomeScreenState extends State<UserNavigation> {
             items: [
               BottomNavigationBarItem(
                 icon: SvgPicture.asset(
-                  'assets/icons/home.svg',
+                  Assets.iconsHome,
                   colorFilter: ColorFilter.mode(
                     currentIndex == 0 ? Colors.white : const Color(0xffb2d5f1),
                     BlendMode.srcIn,
@@ -66,7 +67,7 @@ class _UserHomeScreenState extends State<UserNavigation> {
               ),
               BottomNavigationBarItem(
                 icon: SvgPicture.asset(
-                  'assets/icons/my_advertiments.svg',
+                  Assets.iconsMyAdvertiments,
                   colorFilter: ColorFilter.mode(
                     currentIndex == 1 ? Colors.white : const Color(0xffb2d5f1),
                     BlendMode.srcIn,
@@ -76,7 +77,7 @@ class _UserHomeScreenState extends State<UserNavigation> {
               ),
               BottomNavigationBarItem(
                 icon: SvgPicture.asset(
-                  'assets/icons/add.svg',
+                  Assets.iconsAdd,
                   colorFilter: ColorFilter.mode(
                     currentIndex == 2 ? Colors.white : const Color(0xffb2d5f1),
                     BlendMode.srcIn,
@@ -86,7 +87,7 @@ class _UserHomeScreenState extends State<UserNavigation> {
               ),
               BottomNavigationBarItem(
                 icon: SvgPicture.asset(
-                  'assets/icons/more.svg',
+                  Assets.iconsMore,
                   colorFilter: ColorFilter.mode(
                     currentIndex == 3 ? Colors.white : const Color(0xffb2d5f1),
                     BlendMode.srcIn,

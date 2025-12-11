@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:seed_app/constants/assets.dart';
 import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/core/utils/styles.dart';
-
 import 'package:seed_app/features/advertisements/presentation/widgets/categories_section.dart';
 import 'package:seed_app/features/advertisements/presentation/widgets/home_app_bar.dart';
 
@@ -18,9 +18,10 @@ class HomeScreenBody extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(top: 16.r, left: 16.r, right: 16.r),
           child: SvgPicture.asset(
-            'assets/logos/home_background.svg',
-            height: 240.h,
-            width: 260.w,
+            Assets.logosHomeBackground,
+            height: 200.h,
+            width: double.infinity,
+            fit: BoxFit.fill,
           ),
         ),
         CategoriesSection(),
@@ -28,7 +29,7 @@ class HomeScreenBody extends StatelessWidget {
           child: ListView.builder(
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            itemCount: 4,
+            itemCount: 2,
             itemBuilder: (context, index) {
               return Padding(
                 padding: EdgeInsets.all(8.r),
@@ -42,14 +43,14 @@ class HomeScreenBody extends StatelessWidget {
                     child: Row(
                       children: [
                         Container(
-                          height: 130.h,
+                          height: 110.h,
                           width: 100.w,
                           clipBehavior: Clip.antiAlias,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12.r),
                           ),
                           child: Image.asset(
-                            'assets/icons/test.png',
+                            Assets.iconsTest,
                             fit: BoxFit.cover,
                           ),
                         ),
@@ -70,7 +71,7 @@ class HomeScreenBody extends StatelessWidget {
                                 Text(
                                   'تقييم المشروع:',
                                   style: TextStyles.textStyle16.copyWith(
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w300,
                                   ),
                                 ),
                                 Text(
@@ -106,22 +107,16 @@ class SectionDetails extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomInfo(text: 'الرياض', iconPath: 'assets/icons/location.svg'),
-            CustomInfo(text: 'الكتروني', iconPath: 'assets/icons/location.svg'),
+            CustomInfo(text: 'الرياض', iconPath: Assets.iconsLocation),
+            CustomInfo(text: 'الكتروني', iconPath: Assets.iconsMonitor),
           ],
         ),
         SizedBox(width: 30.w),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CustomInfo(
-              text: '100,000 ريال',
-              iconPath: 'assets/icons/money-send.svg',
-            ),
-            CustomInfo(
-              text: '25 %',
-              iconPath: 'assets/icons/percentage-circle.svg',
-            ),
+            CustomInfo(text: '100,000 ريال', iconPath: Assets.iconsMoneySend),
+            CustomInfo(text: '25 %', iconPath: Assets.iconsPercentageCircle),
           ],
         ),
       ],

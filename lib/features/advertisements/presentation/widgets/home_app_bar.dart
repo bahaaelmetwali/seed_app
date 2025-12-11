@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:seed_app/constants/assets.dart';
 
 
 class HomeAppBar extends StatefulWidget {
@@ -39,7 +40,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
         child: Row(
           children: [
             SvgPicture.asset(
-              'assets/logos/app_bar_logo.svg',
+              Assets.logosAppBarLogo,
               height: 39.w,
               width: 120.w,
             ),
