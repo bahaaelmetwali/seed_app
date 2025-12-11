@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<GetCityCubit>(),
+      create: (context) => getIt<GetCityCubit>()..getCities(),
       child: Scaffold(
         backgroundColor: Constants.kscaffoldColor,
         body: SafeArea(child: HomeScreenBody()),
