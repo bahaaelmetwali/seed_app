@@ -4,7 +4,7 @@ import 'package:seed_app/core/utils/api_service.dart';
 import 'package:seed_app/core/utils/cache_helper.dart';
 import 'package:seed_app/core/utils/dio_helper.dart';
 import 'package:seed_app/features/advertisements/data/data_source.dart/advertisment_data_source.dart';
-import 'package:seed_app/features/advertisements/data/repo_impl/repo_impl.dart';
+import 'package:seed_app/features/advertisements/data/repo_impl/advertisment_repository_impl.dart';
 import 'package:seed_app/features/advertisements/domain/repo/advertisment_repository.dart';
 import 'package:seed_app/features/advertisements/domain/use_cases/get_cities_use_case.dart';
 import 'package:seed_app/features/advertisements/presentation/cubits/get_city/get_city_cubit.dart';
