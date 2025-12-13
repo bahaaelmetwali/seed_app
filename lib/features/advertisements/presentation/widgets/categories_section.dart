@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/core/utils/styles.dart';
 import 'package:seed_app/features/advertisements/presentation/cubits/get_city/get_city_cubit.dart';
 import 'package:seed_app/features/advertisements/presentation/widgets/get_cities_failure_widget.dart';
 import 'package:seed_app/features/advertisements/presentation/widgets/get_cities_loading_widget.dart';
 import 'package:seed_app/features/advertisements/presentation/widgets/get_cities_sucess_widget.dart';
+import 'package:seed_app/features/advertisements/presentation/widgets/show_all_details_section.dart';
 
 class CategoriesSection extends StatelessWidget {
   const CategoriesSection({super.key});
@@ -19,30 +19,7 @@ class CategoriesSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Text('المدن', style: TextStyles.textStyle18),
-              Spacer(),
-
-              Column(
-                children: [
-                  Text(
-                    'عرض الكل',
-                    style: TextStyles.textStyle14.copyWith(
-                      color: Constants.kPrimaryColor,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(height: 2.h),
-                  Container(
-                    height: 1.h,
-                    width: 60.w,
-                    color: Constants.kPrimaryColor,
-                  ),
-                ],
-              ),
-            ],
-          ),
+          ShowAllDetails(details: 'المدن', onTap: () {}),
           SizedBox(height: 14.h),
           SizedBox(
             height: 56.h,
