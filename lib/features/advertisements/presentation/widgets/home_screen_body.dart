@@ -16,45 +16,46 @@ class HomeScreenBody extends StatelessWidget {
       children: [
         HomeAppBar(),
         Padding(
-          padding: EdgeInsets.only(top: 16.r, left: 16.r, right: 16.r),
+          padding: EdgeInsets.only(top: 16.r, left: 24.r, right: 24.r),
           child: SvgPicture.asset(
             Assets.logosHomeBackground,
-            height: 200.h,
+            height: 166.h,
             width: double.infinity,
             fit: BoxFit.fill,
           ),
         ),
         CategoriesSection(),
+
         ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
           itemCount: 2,
           itemBuilder: (context, index) {
             return Padding(
-              padding: EdgeInsets.all(8.r),
+              padding: EdgeInsets.symmetric(horizontal: 24.r, vertical: 8.r),
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16.r),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.all(16.r),
+                  padding: EdgeInsets.all(10.r),
                   child: Row(
                     children: [
                       Container(
-                        height: 110.h,
-                        width: 100.w,
+                        height: 107.h,
+                        width: 85.w,
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12.r),
+                          borderRadius: BorderRadius.circular(8.r),
                         ),
-                        child: Image.asset(Assets.iconsTest, fit: BoxFit.cover),
+                        child: Image.asset(Assets.iconsTest, fit: BoxFit.fill),
                       ),
                       SizedBox(width: 8.w),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('انشاء مركز طبي', style: TextStyles.textStyle16),
+                          Text('انشاء مركز طبي', style: TextStyles.textStyle14),
                           SizedBox(height: 4.h),
                           SectionDetails(),
                           Row(
@@ -63,7 +64,7 @@ class HomeScreenBody extends StatelessWidget {
                             children: [
                               Text(
                                 'تقييم المشروع:',
-                                style: TextStyles.textStyle16.copyWith(
+                                style: TextStyles.textStyle14.copyWith(
                                   fontWeight: FontWeight.w300,
                                 ),
                               ),
@@ -124,12 +125,12 @@ class CustomInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SvgPicture.asset(iconPath),
-        SizedBox(width: 2.w),
+        SvgPicture.asset(iconPath, height: 18.r, width: 18.r),
+        SizedBox(width: 4.w),
 
         Text(
           text,
-          style: TextStyles.textStyle14.copyWith(fontWeight: FontWeight.w300),
+          style: TextStyles.textStyle12.copyWith(fontWeight: FontWeight.w400),
         ),
       ],
     );

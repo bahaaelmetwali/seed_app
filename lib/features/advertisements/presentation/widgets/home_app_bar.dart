@@ -22,7 +22,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black12,
+            color: Colors.grey.shade200,
             spreadRadius: 0,
             blurRadius: 1,
             offset: const Offset(0, 2),
@@ -32,9 +32,9 @@ class _HomeAppBarState extends State<HomeAppBar> {
       child: Padding(
         padding: EdgeInsets.only(
           left: 24.w,
-          right: 24.w,
+          right: 28.w,
           bottom: 24.h,
-          top: 36.h,
+          top: 24.h,
         ),
         child: Row(
           children: [

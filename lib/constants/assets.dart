@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-
   static const String fontsAvenirHeavy = "assets/fonts/Avenir_Heavy.ttf";
 
   static const String fontsAvenirLight = "assets/fonts/Avenir_Light.ttf";

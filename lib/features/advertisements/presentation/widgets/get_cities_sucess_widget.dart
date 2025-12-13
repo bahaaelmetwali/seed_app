@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:seed_app/core/utils/constants.dart';
@@ -30,8 +29,8 @@ class _GetCitiesSucessWidgetState extends State<GetCitiesSucessWidget> {
               });
             },
             child: Container(
-              height: 62.h,
-              width: 92.w,
+              height: 50.h,
+              width: 78.w,
               decoration: BoxDecoration(
                 border: Border.all(
                   color: selectedIndex == index
@@ -48,8 +47,8 @@ class _GetCitiesSucessWidgetState extends State<GetCitiesSucessWidget> {
                   style: TextStyles.textStyle16.copyWith(
                     color: Colors.black,
                     fontWeight: selectedIndex == index
-                        ? FontWeight.w500
-                        : FontWeight.w300,
+                        ? FontWeight.w400
+                        : FontWeight.w100,
                   ),
                   textAlign: TextAlign.center,
                 ),

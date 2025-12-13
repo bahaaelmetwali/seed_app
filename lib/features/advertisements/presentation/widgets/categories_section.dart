@@ -14,7 +14,8 @@ class CategoriesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16.r),
+      padding: EdgeInsets.symmetric(vertical: 16.r, horizontal: 24.r),
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -29,11 +30,12 @@ class CategoriesSection extends StatelessWidget {
                     'عرض الكل',
                     style: TextStyles.textStyle14.copyWith(
                       color: Constants.kPrimaryColor,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
+                  SizedBox(height: 2.h),
                   Container(
-                    height: 2.h,
+                    height: 1.h,
                     width: 60.w,
                     color: Constants.kPrimaryColor,
                   ),
@@ -41,9 +43,9 @@ class CategoriesSection extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 20.h),
+          SizedBox(height: 14.h),
           SizedBox(
-            height: 62.h,
+            height: 56.h,
             child: BlocBuilder<GetCityCubit, GetCityState>(
               builder: (context, state) {
                 if (state is GetCitySucess) {
@@ -63,4 +65,3 @@ class CategoriesSection extends StatelessWidget {
     );
   }
 }
-
