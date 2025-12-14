@@ -4,9 +4,14 @@ import 'package:seed_app/core/utils/api_service.dart';
 import 'package:seed_app/core/utils/cache_helper.dart';
 import 'package:seed_app/core/utils/dio_helper.dart';
 import 'package:seed_app/features/advertisements/data/data_source.dart/advertisment_data_source.dart';
+import 'package:seed_app/features/advertisements/data/data_source.dart/static_data_source.dart';
 import 'package:seed_app/features/advertisements/data/repo_impl/advertisment_repository_impl.dart';
+import 'package:seed_app/features/advertisements/data/repo_impl/static_repository_impl.dart';
 import 'package:seed_app/features/advertisements/domain/repo/advertisment_repository.dart';
+import 'package:seed_app/features/advertisements/domain/repo/static_repository.dart';
+import 'package:seed_app/features/advertisements/domain/use_cases/get_ads_use_case.dart';
 import 'package:seed_app/features/advertisements/domain/use_cases/get_cities_use_case.dart';
+import 'package:seed_app/features/advertisements/presentation/cubits/get_ads/get_ads_cubit.dart';
 import 'package:seed_app/features/advertisements/presentation/cubits/get_city/get_city_cubit.dart';
 import 'package:seed_app/features/auth/data/data_source/local_data_source.dart';
 import 'package:seed_app/features/auth/data/data_source/remote_data_source.dart';
@@ -34,8 +39,11 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(getIt<ApiService>()),
   );
-  getIt.registerLazySingleton<AdvertismentRemoteDataSource>(
-    () => AdvertismentRemoteDataSourceImpl(getIt<ApiService>()),
+  getIt.registerLazySingleton<StaticRemoteDataSource>(
+    () => StaticRemoteDataSourceeImpl(getIt<ApiService>()),
+  );
+  getIt.registerLazySingleton<AdvertismentDataSource>(
+    () => AdvertismentDataSourceImpl(getIt<ApiService>()),
   );
 
   getIt.registerLazySingleton<LocalDataSource>(
@@ -45,8 +53,11 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<AuthRepository>(
     () => AuthRepoImpl(getIt<AuthRemoteDataSource>(), getIt<LocalDataSource>()),
   );
- getIt.registerLazySingleton<AdvertismentRepository>(
-    () => AdvertismentRepositoryImpl(getIt<AdvertismentRemoteDataSource>(), ),
+  getIt.registerLazySingleton<StaticRepository>(
+    () => StaticRepositoryImpl(getIt<StaticRemoteDataSource>()),
+  );
+  getIt.registerLazySingleton<AdvertismentRepository>(
+    () => AdvertismentRepositoryImpl(getIt<AdvertismentDataSource>()),
   );
   getIt.registerLazySingleton<LoginUseCase>(
     () => LoginUseCase(getIt<AuthRepository>()),
@@ -55,14 +66,14 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<VerificationUseCase>(
     () => VerificationUseCase(getIt<AuthRepository>()),
   );
-    getIt.registerLazySingleton<GetCitiesUseCase>(
-    () => GetCitiesUseCase(getIt<AdvertismentRepository>()),
+  getIt.registerLazySingleton<GetCitiesUseCase>(
+    () => GetCitiesUseCase(getIt<StaticRepository>()),
   );
-  
-      getIt.registerLazySingleton<GetCityCubit>(
+  getIt.registerLazySingleton<GetAdsUseCase>(
+    () => GetAdsUseCase(getIt<AdvertismentRepository>()),
+  );
+
+  getIt.registerLazySingleton<GetCityCubit>(
     () => GetCityCubit(getIt<GetCitiesUseCase>()),
   );
-  
-  
-  
 }

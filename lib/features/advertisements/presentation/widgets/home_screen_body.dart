@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:seed_app/constants/assets.dart';
 import 'package:seed_app/features/advertisements/presentation/widgets/ads_list_widget.dart';
-
 import 'package:seed_app/features/advertisements/presentation/widgets/categories_section.dart';
 import 'package:seed_app/features/advertisements/presentation/widgets/home_app_bar.dart';
 
