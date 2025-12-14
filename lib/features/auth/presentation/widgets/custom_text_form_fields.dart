@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:seed_app/constants/assets.dart';
@@ -28,7 +27,7 @@ class CustomTextFormFieldsSection extends StatelessWidget {
           controller: nameEditingController,
           validator: Validator.nameValidator,
         ),
-        SizedBox(height: 10.h),
+        SizedBox(height: 5.h),
         CustomTextFormField(
           name: 'رقم الجوال',
           hintText: 'ادخل رقم جوالك',
@@ -36,7 +35,7 @@ class CustomTextFormFieldsSection extends StatelessWidget {
           controller: mobileEditingController,
           validator: Validator.phoneValidator,
         ),
-        SizedBox(height: 10.h),
+        SizedBox(height: 5.h),
 
         CustomTextFormField(
           name: 'البريد الإلكتروني',
