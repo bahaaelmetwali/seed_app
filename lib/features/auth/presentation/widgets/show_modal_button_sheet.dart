@@ -5,8 +5,8 @@ import 'package:seed_app/core/utils/styles.dart';
 import 'package:seed_app/core/widgets/custom_buttons.dart';
 
 class ShowModalButtonSheet extends StatelessWidget {
-  const ShowModalButtonSheet({super.key});
-
+  const ShowModalButtonSheet({super.key, required this.onTap});
+  final void Function() onTap;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,6 +36,7 @@ class ShowModalButtonSheet extends StatelessWidget {
           SizedBox(height: 20),
           CustomButton(
             onPressed: () {
+              onTap();
               Navigator.pop(context);
             },
             text: 'الموافقه',

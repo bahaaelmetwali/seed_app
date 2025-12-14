@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
-import 'package:seed_app/constants/assets.dart';
 import 'package:seed_app/core/router/app_router_names.dart';
 import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/core/utils/styles.dart';
 import 'package:seed_app/core/widgets/custom_buttons.dart';
 import 'package:seed_app/core/widgets/custom_navigation_button.dart';
-import 'package:seed_app/core/widgets/custom_text_form_field.dart';
+import 'package:seed_app/features/auth/presentation/widgets/agree_conditions_and_terms_widget.dart';
 import 'package:seed_app/features/auth/presentation/widgets/back_ground_widget.dart';
-import 'package:seed_app/features/auth/presentation/widgets/show_modal_button_sheet.dart';
+import 'package:seed_app/features/auth/presentation/widgets/custom_text_form_fields.dart';
 
 class RegisterScreenBody extends StatefulWidget {
   const RegisterScreenBody({super.key});
@@ -66,69 +65,28 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                         ),
                       ),
                       SizedBox(height: 10.h),
-                      CustomTextFormField(
-                        name: 'الاسم',
-                        hintText: 'ادخل الاسم',
-                        iconPath: Assets.iconsUser,
-                        controller: nameEditingController,
+                      CustomTextFormFieldsSection(
+                        nameEditingController: nameEditingController,
+                        mobileEditingController: mobileEditingController,
+                        emailEditingController: emailEditingController,
                       ),
-                      SizedBox(height: 10.h),
-                      CustomTextFormField(
-                        name: 'رقم الجوال',
-                        hintText: 'ادخل رقم جوالك',
-                        iconPath: Assets.iconsMobile,
-                        controller: mobileEditingController,
-                      ),
-                      SizedBox(height: 10.h),
+                      SizedBox(height: 20.h),
 
-                      CustomTextFormField(
-                        name: 'البريد الإلكتروني',
-                        hintText: 'ادخل البريد الإلكتروني',
-                        iconPath: Assets.iconsSms,
-
-                        controller: emailEditingController,
+                      AgreeConditionsAndTermsWidget(
+                        isAgreed: isAgreed,
+                        onChanged: (_) {
+                          setState(() {
+                            isAgreed = !isAgreed;
+                          });
+                        },
+                        onTap: () {
+                          setState(() {
+                            isAgreed = true;
+                          });
+                        },
                       ),
 
-                      SizedBox(height: 10.h),
-                      Row(
-                        children: [
-                          Checkbox(
-                            value: isAgreed,
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                            visualDensity: VisualDensity.compact,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(6.r),
-                            ),
-                            activeColor: Constants.kPrimaryColor,
-                            onChanged: (_) {
-                              setState(() {
-                                isAgreed = !isAgreed;
-                              });
-                            },
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                context: context,
-                                isScrollControlled: true,
-                                backgroundColor: Colors.white,
-                                shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.vertical(
-                                    top: Radius.circular(16),
-                                  ),
-                                ),
-                                builder: (_) => const ShowModalButtonSheet(),
-                              );
-                            },
-                            child: Text(
-                              'الموافقة على الشروط والأحكام',
-                              style: TextStyles.textStyle14,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10.h),
+                      SizedBox(height: 20.h),
                       CustomButton(onPressed: () {}, text: 'انشاء حساب'),
                       CustomNavigationButton(
                         solidText: 'لديك حساب بالفعل ؟ ',
