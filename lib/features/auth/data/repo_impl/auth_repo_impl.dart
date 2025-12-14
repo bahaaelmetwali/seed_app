@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:seed_app/core/utils/errors/failure.dart';
 import 'package:seed_app/core/utils/handle_request.dart';
 import 'package:seed_app/features/auth/data/data_source/local_data_source.dart';
-import 'package:seed_app/features/auth/data/data_source/remote_data_source.dart';
+import 'package:seed_app/features/auth/data/data_source/auth_remote_data_source.dart';
 import 'package:seed_app/features/auth/data/models/auth_response_model.dart';
 import 'package:seed_app/features/auth/data/models/send_register_request_model.dart';
 import 'package:seed_app/features/auth/data/models/send_request_model.dart';
@@ -60,6 +60,16 @@ class AuthRepoImpl extends AuthRepository {
         );
         final String token = authResponseModel.accessToken;
         _localDataSource.cacheToken(token);
+        return Future.value(unit);
+      },
+    );
+  }
+
+  @override
+  Future<Either<Failure, Unit>> resendOtp() {
+    return handleRequest<Unit>(
+      request: () async {
+        await _remoteDataSource.resendotp();
         return Future.value(unit);
       },
     );

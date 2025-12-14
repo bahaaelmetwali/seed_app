@@ -10,8 +10,11 @@ abstract class AuthRemoteDataSource {
     SendMobileRequestModel sendMobileRequestModel,
   );
   Future<Unit> sendOtp(VerificationModel verificationModel);
-    Future<AuthResponseModel> register(SendRegisterRequestModel sendRegisterRequestModel);
+  Future<Unit> resendotp();
 
+  Future<AuthResponseModel> register(
+    SendRegisterRequestModel sendRegisterRequestModel,
+  );
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -40,16 +43,24 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     );
     return Future.value(unit);
   }
-  
+
   @override
-  Future<AuthResponseModel> register(SendRegisterRequestModel sendRegisterRequestModel)async {
-   final response = await _apiService.post(
+  Future<AuthResponseModel> register(
+    SendRegisterRequestModel sendRegisterRequestModel,
+  ) async {
+    final response = await _apiService.post(
       endPoint: 'auth/register',
       data: sendRegisterRequestModel.toJson(),
     );
-     final AuthResponseModel authResponseModel = AuthResponseModel.fromJson(
+    final AuthResponseModel authResponseModel = AuthResponseModel.fromJson(
       response['data'],
     );
     return authResponseModel;
+  }
+
+  @override
+  Future<Unit> resendotp() async {
+    await _apiService.post(endPoint: 'auth/resend-otp');
+    return Future.value(unit);
   }
 }

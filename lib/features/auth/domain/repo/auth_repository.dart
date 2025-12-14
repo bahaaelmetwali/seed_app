@@ -7,5 +7,6 @@ import 'package:seed_app/features/auth/domain/entity/verification.dart';
 abstract class AuthRepository {
   Future<Either<Failure, Unit>> login(SendRequest sendRequest);
   Future<Either<Failure, Unit>> sendOtp(Verification verification);
+  Future<Either<Failure, Unit>> resendOtp();
   Future<Either<Failure, Unit>> register(RegisterRequest registerRequest);
 }

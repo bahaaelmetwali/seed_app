@@ -14,10 +14,11 @@ import 'package:seed_app/features/advertisements/domain/use_cases/get_cities_use
 import 'package:seed_app/features/advertisements/presentation/cubits/get_city/get_city_cubit.dart';
 import 'package:seed_app/features/advertisements/presentation/cubits/selected_city.dart/selected_city_cubit.dart';
 import 'package:seed_app/features/auth/data/data_source/local_data_source.dart';
-import 'package:seed_app/features/auth/data/data_source/remote_data_source.dart';
+import 'package:seed_app/features/auth/data/data_source/auth_remote_data_source.dart';
 import 'package:seed_app/features/auth/domain/repo/auth_repository.dart';
 import 'package:seed_app/features/auth/domain/use_cases/login_use_case.dart';
 import 'package:seed_app/features/auth/domain/use_cases/register_use_case.dart';
+import 'package:seed_app/features/auth/domain/use_cases/resend_otp_use_case.dart';
 import 'package:seed_app/features/auth/domain/use_cases/verification_use_case.dart';
 import 'package:seed_app/features/log_out_stream.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -76,6 +77,10 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<RegisterUseCase>(
     () => RegisterUseCase(getIt<AuthRepository>()),
   );
+    getIt.registerLazySingleton<ResendOtpUseCase>(
+    () => ResendOtpUseCase(getIt<AuthRepository>()),
+  );
+
 
 
   getIt.registerLazySingleton<GetCityCubit>(
