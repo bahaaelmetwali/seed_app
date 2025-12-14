@@ -41,7 +41,7 @@ class CustomNavigationButton extends StatelessWidget {
               SizedBox(height: 2.h),
               Container(
                 height: 2.h,
-                width: (lineWidth != null) ? lineWidth!.w : 115.w,
+                width: (lineWidth != null) ? lineWidth!.w : 75.w,
                 color: Constants.kPrimaryColor,
               ),
             ],

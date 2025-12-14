@@ -73,14 +73,14 @@ class CustomTextFormField extends StatelessWidget {
                       padding: EdgeInsets.all(8.sp),
                       child: SvgPicture.asset(
                         iconPath!,
-                        width: 20.w,
-                        height: 20.h,
+                        width: 28.w,
+                        height: 28.h,
                       ),
                     )
                   : null,
               prefixIconConstraints: BoxConstraints(
-                minWidth: 20.w,
-                minHeight: 20.h,
+                minWidth: 30.w,
+                minHeight: 30.h,
               ),
               suffixIcon: suffixIcon != null
                   ? Padding(padding: EdgeInsets.all(8.sp), child: suffixIcon)

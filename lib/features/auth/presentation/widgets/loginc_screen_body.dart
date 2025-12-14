@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:seed_app/core/router/app_router_names.dart';
 import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/core/utils/styles.dart';
 import 'package:seed_app/core/widgets/custom_buttons.dart';
@@ -79,9 +81,11 @@ class _LogincScreenBodyState extends State<LogincScreenBody> {
                               formKey: _formKey,
                             ),
                             CustomNavigationButton(
-                              solidText: 'إنشاء حساب',
-                              navigationText: 'ليس لديك حساب ؟',
-                              onPressed: () {},
+                              solidText: 'ليس لديك حساب ؟ ',
+                              navigationText: 'إنشاء حساب',
+                              onPressed: () {
+                                context.go(AppRouterNames.registerScreen);
+                              },
                             ),
                             Spacer(),
                             CustomButton(

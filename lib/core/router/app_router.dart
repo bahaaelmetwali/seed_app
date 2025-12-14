@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:seed_app/core/router/app_router_names.dart';
 import 'package:seed_app/features/auth/presentation/views/login_screen.dart';
 import 'package:seed_app/features/auth/presentation/views/otp_screen.dart';
+import 'package:seed_app/features/auth/presentation/views/register_screen.dart';
 import 'package:seed_app/features/user_navigation.dart';
 
 abstract class AppRouter {
@@ -14,6 +15,12 @@ abstract class AppRouter {
         path: AppRouterNames.loginScreen,
         builder: (BuildContext context, GoRouterState state) {
           return const LoginScreen();
+        },
+      ),
+         GoRoute(
+        path: AppRouterNames.registerScreen,
+        builder: (BuildContext context, GoRouterState state) {
+          return const RegisterScreen();
         },
       ),
       GoRoute(
