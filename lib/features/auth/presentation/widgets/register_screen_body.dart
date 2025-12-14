@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:seed_app/core/router/app_router_names.dart';
 import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/core/utils/styles.dart';
-import 'package:seed_app/core/widgets/custom_navigation_button.dart';
+import 'package:seed_app/core/widgets/custom_navigation_button.dart'; 
 import 'package:seed_app/features/auth/presentation/cubits/register/register_cubit.dart';
 import 'package:seed_app/features/auth/presentation/widgets/agree_conditions_and_terms_widget.dart';
 import 'package:seed_app/features/auth/presentation/widgets/back_ground_widget.dart';

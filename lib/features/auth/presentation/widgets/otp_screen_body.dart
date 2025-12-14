@@ -20,7 +20,6 @@ class OtpScreenBody extends StatefulWidget {
 }
 
 class _OtpScreenBodyState extends State<OtpScreenBody> {
-  int seconds = 90;
   Timer? timer;
   @override
   void initState() {
@@ -28,12 +27,16 @@ class _OtpScreenBodyState extends State<OtpScreenBody> {
     super.initState();
   }
 
+  int totalSeconds = 90;
   void startTimer() {
+    int seconds = 90;
+
     timer = Timer.periodic(Duration(seconds: 1), (callback) {
       if (!mounted) return;
       if (seconds > 0) {
         setState(() {
           seconds--;
+          totalSeconds = seconds;
         });
       } else {
         timer!.cancel();
@@ -53,8 +56,8 @@ class _OtpScreenBodyState extends State<OtpScreenBody> {
 
   @override
   Widget build(BuildContext context) {
-    int minutes = seconds ~/ 60;
-    int remainingSeconds = seconds % 60;
+    int minutes = totalSeconds ~/ 60;
+    int remainingSeconds = totalSeconds % 60;
     String remainingSecond = '$remainingSeconds';
 
     if (remainingSeconds < 10) {
@@ -115,7 +118,11 @@ class _OtpScreenBodyState extends State<OtpScreenBody> {
                               solidText: 'لم تصلك رسالة تأكيد ؟',
                               navigationText: 'اعادة ارسال الكود',
                               lineWidth: 100,
-                              onPressed: () {},
+                              onPressed: () {
+                                timer?.cancel();
+
+                                startTimer();
+                              },
                             ),
                             Spacer(),
                           ],
