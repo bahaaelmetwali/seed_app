@@ -74,22 +74,16 @@ class AdvertismentModel {
     );
   }
 
-  Advertisment? toEntity() {
-    if (totalProjectEvaluation == null ||
-        partnershipRatio == null ||
-        askMoney == null ||
-        city == null ||
-        mainImage.isEmpty) {
-      return null;
-    }
-
+  Advertisment toEntity() {
     return Advertisment(
-      totalProjectEvaluation: totalProjectEvaluation!,
-      partnershipRatio: partnershipRatio!,
-      askMoney: askMoney!,
+      totalProjectEvaluation: totalProjectEvaluation ?? 0,
+      partnershipRatio: partnershipRatio ?? 0,
+      askMoney: askMoney ?? 0,
       isOnline: isOnline,
-      city: city!,
-      image: mainImage,
+      city: city ?? '',
+      image: mainImage.isNotEmpty
+          ? mainImage
+          : 'https://via.placeholder.com/150',
       name: name,
     );
   }

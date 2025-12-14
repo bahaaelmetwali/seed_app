@@ -12,6 +12,7 @@ import 'package:seed_app/features/advertisements/domain/repo/static_repository.d
 import 'package:seed_app/features/advertisements/domain/use_cases/get_ads_use_case.dart';
 import 'package:seed_app/features/advertisements/domain/use_cases/get_cities_use_case.dart';
 import 'package:seed_app/features/advertisements/presentation/cubits/get_city/get_city_cubit.dart';
+import 'package:seed_app/features/advertisements/presentation/cubits/selected_city.dart/selected_city_cubit.dart';
 import 'package:seed_app/features/auth/data/data_source/local_data_source.dart';
 import 'package:seed_app/features/auth/data/data_source/remote_data_source.dart';
 import 'package:seed_app/features/auth/domain/repo/auth_repository.dart';
@@ -73,6 +74,9 @@ Future<void> setupServiceLocator() async {
   );
 
   getIt.registerLazySingleton<GetCityCubit>(
-    () => GetCityCubit(getIt<GetCitiesUseCase>()),
+    () => GetCityCubit(
+      getIt<GetCitiesUseCase>(),
+      selectedCityCubit: SelectedCityCubit(),
+    ),
   );
 }

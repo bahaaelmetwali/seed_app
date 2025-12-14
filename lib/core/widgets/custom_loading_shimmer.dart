@@ -17,8 +17,8 @@ class CustomLoadingShimmer extends StatelessWidget {
       child: Shimmer(
         duration: Duration(seconds: 1),
         interval: Duration(seconds: 1),
-        color: Colors.black54,
-        colorOpacity: 0,
+        color: Colors.black87,
+        colorOpacity: .09,
         enabled: true,
         direction: ShimmerDirection.fromRTLB(),
         child: Container(

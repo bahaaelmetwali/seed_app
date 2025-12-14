@@ -1,8 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seed_app/constants/assets.dart';
 import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/core/utils/styles.dart';
+import 'package:seed_app/core/widgets/custom_loading_shimmer.dart';
 import 'package:seed_app/features/advertisements/domain/entities/advertisment.dart';
 import 'package:seed_app/features/advertisements/presentation/widgets/section_details.dart';
 
@@ -30,7 +31,15 @@ class AdWidget extends StatelessWidget {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.r),
                 ),
-                child: Image.asset(Assets.iconsTest, fit: BoxFit.fill),
+                child: CachedNetworkImage(
+                  imageUrl: advertisment!.image,
+                  fit: BoxFit.fill,
+                  placeholder: (context, url) => Center(
+                    child: CustomLoadingShimmer(height: 107.h, width: 85.w),
+                  ),
+                  errorWidget: (context, url, error) =>
+                      Center(child: Icon(Icons.broken_image)),
+                ),
               ),
               SizedBox(width: 8.w),
               Column(

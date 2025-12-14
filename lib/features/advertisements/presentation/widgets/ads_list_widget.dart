@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:seed_app/core/utils/styles.dart';
 import 'package:seed_app/features/advertisements/domain/entities/advertisment.dart';
 import 'package:seed_app/features/advertisements/presentation/cubits/get_ads/get_ads_cubit.dart';
 import 'package:seed_app/features/advertisements/presentation/widgets/get_ads_failure_widget.dart';
@@ -23,7 +22,7 @@ class AdsListWidget extends StatelessWidget {
           final String errorMessage = state.errorMessage;
           return GetAdsFailureWidget(errorMessage: errorMessage);
         } else {
-          return Text('There was an Error', style: TextStyles.textStyle20);
+          return Text('');
         }
       },
     );

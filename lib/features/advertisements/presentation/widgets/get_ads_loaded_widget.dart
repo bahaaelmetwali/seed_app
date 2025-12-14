@@ -11,6 +11,11 @@ class GetAdsLoadedWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<Advertisment> trueAds = ads
+        .where((ad) => ad != null)
+        .cast<Advertisment>()
+        .toList();
+
     return Column(
       children: [
         Padding(
@@ -21,9 +26,9 @@ class GetAdsLoadedWidget extends StatelessWidget {
         ListView.builder(
           shrinkWrap: true,
           physics: NeverScrollableScrollPhysics(),
-          itemCount: 2,
+          itemCount: trueAds.length,
           itemBuilder: (context, index) {
-            return AdWidget(advertisment: ads[index]);
+            return AdWidget(advertisment: trueAds[index]);
           },
         ),
       ],
