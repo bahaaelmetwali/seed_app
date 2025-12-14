@@ -11,7 +11,6 @@ import 'package:seed_app/features/advertisements/domain/repo/advertisment_reposi
 import 'package:seed_app/features/advertisements/domain/repo/static_repository.dart';
 import 'package:seed_app/features/advertisements/domain/use_cases/get_ads_use_case.dart';
 import 'package:seed_app/features/advertisements/domain/use_cases/get_cities_use_case.dart';
-import 'package:seed_app/features/advertisements/presentation/cubits/get_ads/get_ads_cubit.dart';
 import 'package:seed_app/features/advertisements/presentation/cubits/get_city/get_city_cubit.dart';
 import 'package:seed_app/features/auth/data/data_source/local_data_source.dart';
 import 'package:seed_app/features/auth/data/data_source/remote_data_source.dart';

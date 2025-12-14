@@ -5,6 +5,7 @@ class Advertisment {
   final bool isOnline;
   final String city;
   final String image;
+  final String name;
 
   Advertisment({
     required this.totalProjectEvaluation,
@@ -13,5 +14,6 @@ class Advertisment {
     required this.isOnline,
     required this.city,
     required this.image,
+    required this.name,
   });
 }

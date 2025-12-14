@@ -13,7 +13,7 @@ class CustomLoadingShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 8.r),
+      padding: EdgeInsets.symmetric(horizontal: 24.r, vertical: 8.r),
       child: Shimmer(
         duration: Duration(seconds: 1),
         interval: Duration(seconds: 1),

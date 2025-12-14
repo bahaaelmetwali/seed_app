@@ -3,10 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:seed_app/constants/assets.dart';
 import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/core/utils/styles.dart';
+import 'package:seed_app/features/advertisements/domain/entities/advertisment.dart';
 import 'package:seed_app/features/advertisements/presentation/widgets/section_details.dart';
 
 class AdWidget extends StatelessWidget {
-  const AdWidget({super.key});
+  const AdWidget({super.key, required this.advertisment});
+  final Advertisment? advertisment;
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +36,9 @@ class AdWidget extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('انشاء مركز طبي', style: TextStyles.textStyle14),
+                  Text(advertisment!.name, style: TextStyles.textStyle14),
                   SizedBox(height: 4.h),
-                  SectionDetails(),
+                  SectionDetails(advertisment: advertisment),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -48,7 +50,7 @@ class AdWidget extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        ' 1,000000',
+                        ' ${advertisment!.totalProjectEvaluation}',
                         style: TextStyles.textStyle16.copyWith(
                           color: Constants.kPrimaryColor,
                         ),

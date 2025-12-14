@@ -90,6 +90,7 @@ class AdvertismentModel {
       isOnline: isOnline,
       city: city!,
       image: mainImage,
+      name: name,
     );
   }
 }
