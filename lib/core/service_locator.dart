@@ -17,6 +17,7 @@ import 'package:seed_app/features/auth/data/data_source/local_data_source.dart';
 import 'package:seed_app/features/auth/data/data_source/remote_data_source.dart';
 import 'package:seed_app/features/auth/domain/repo/auth_repository.dart';
 import 'package:seed_app/features/auth/domain/use_cases/login_use_case.dart';
+import 'package:seed_app/features/auth/domain/use_cases/register_use_case.dart';
 import 'package:seed_app/features/auth/domain/use_cases/verification_use_case.dart';
 import 'package:seed_app/features/log_out_stream.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -72,6 +73,10 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<GetAdsUseCase>(
     () => GetAdsUseCase(getIt<AdvertismentRepository>()),
   );
+  getIt.registerLazySingleton<RegisterUseCase>(
+    () => RegisterUseCase(getIt<AuthRepository>()),
+  );
+
 
   getIt.registerLazySingleton<GetCityCubit>(
     () => GetCityCubit(
