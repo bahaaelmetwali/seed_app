@@ -9,6 +9,7 @@ import 'package:seed_app/core/widgets/custom_buttons.dart';
 import 'package:seed_app/core/widgets/custom_navigation_button.dart';
 import 'package:seed_app/core/widgets/custom_text_form_field.dart';
 import 'package:seed_app/features/auth/presentation/widgets/back_ground_widget.dart';
+import 'package:seed_app/features/auth/presentation/widgets/show_modal_button_sheet.dart';
 
 class RegisterScreenBody extends StatefulWidget {
   const RegisterScreenBody({super.key});
@@ -18,6 +19,8 @@ class RegisterScreenBody extends StatefulWidget {
 }
 
 class _RegisterScreenBodyState extends State<RegisterScreenBody> {
+  bool isAgreed = false;
+
   final nameEditingController = TextEditingController();
   final emailEditingController = TextEditingController();
   final mobileEditingController = TextEditingController();
@@ -87,8 +90,45 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                       ),
 
                       SizedBox(height: 10.h),
-
-                      SizedBox(height: 15.h),
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: isAgreed,
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                            visualDensity: VisualDensity.compact,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(6.r),
+                            ),
+                            activeColor: Constants.kPrimaryColor,
+                            onChanged: (_) {
+                              setState(() {
+                                isAgreed = !isAgreed;
+                              });
+                            },
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              showModalBottomSheet(
+                                context: context,
+                                isScrollControlled: true,
+                                backgroundColor: Colors.white,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(16),
+                                  ),
+                                ),
+                                builder: (_) => const ShowModalButtonSheet(),
+                              );
+                            },
+                            child: Text(
+                              'الموافقة على الشروط والأحكام',
+                              style: TextStyles.textStyle14,
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10.h),
                       CustomButton(onPressed: () {}, text: 'انشاء حساب'),
                       CustomNavigationButton(
                         solidText: 'لديك حساب بالفعل ؟ ',

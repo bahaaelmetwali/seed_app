@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:seed_app/core/router/app_router_names.dart';
 import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/core/utils/styles.dart';
+import 'package:seed_app/core/utils/validation.dart';
 import 'package:seed_app/core/widgets/custom_buttons.dart';
 import 'package:seed_app/core/widgets/custom_navigation_button.dart';
 import 'package:seed_app/core/widgets/custom_text_form_field.dart';
@@ -40,7 +41,6 @@ class _LogincScreenBodyState extends State<LogincScreenBody> {
                   children: [
                     BackGroundWidget(),
                     Container(
-                      height: 620.h,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -73,6 +73,7 @@ class _LogincScreenBodyState extends State<LogincScreenBody> {
                             CustomTextFormField(
                               name: 'رقم الجوال',
                               hintText: 'ادخل رقم الجوال',
+                              validator: Validator.phoneValidator,
                               controller: mobileEditingController,
                             ),
                             SizedBox(height: 40.h),
@@ -87,7 +88,7 @@ class _LogincScreenBodyState extends State<LogincScreenBody> {
                                 context.go(AppRouterNames.registerScreen);
                               },
                             ),
-                            Spacer(),
+                            SizedBox(height: 95.h),
                             CustomButton(
                               onPressed: () {},
                               text: 'الدخول كزائر',
