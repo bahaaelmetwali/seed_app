@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:seed_app/core/utils/api_service.dart';
 import 'package:seed_app/features/auth/data/models/auth_response_model.dart';
+import 'package:seed_app/features/auth/data/models/send_register_request_model.dart';
 import 'package:seed_app/features/auth/data/models/send_request_model.dart';
 import 'package:seed_app/features/auth/data/models/verification_model.dart';
 
@@ -9,6 +10,8 @@ abstract class AuthRemoteDataSource {
     SendMobileRequestModel sendMobileRequestModel,
   );
   Future<Unit> sendOtp(VerificationModel verificationModel);
+    Future<AuthResponseModel> register(SendRegisterRequestModel sendRegisterRequestModel);
+
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -36,5 +39,17 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       data: verificationModel.toJson(),
     );
     return Future.value(unit);
+  }
+  
+  @override
+  Future<AuthResponseModel> register(SendRegisterRequestModel sendRegisterRequestModel)async {
+   final response = await _apiService.post(
+      endPoint: 'auth/register',
+      data: sendRegisterRequestModel.toJson(),
+    );
+     final AuthResponseModel authResponseModel = AuthResponseModel.fromJson(
+      response['data'],
+    );
+    return authResponseModel;
   }
 }
