@@ -26,14 +26,19 @@ import '../features/auth/data/repo_impl/auth_repo_impl.dart';
 
 final getIt = GetIt.instance;
 Future<void> setupServiceLocator() async {
-  //logout stream
   getIt.registerLazySingleton(() => LogoutStream());
-  // cache locator
+
   final prefs = await SharedPreferences.getInstance();
   getIt.registerLazySingleton<SharedPreferences>(() => prefs);
   getIt.registerLazySingleton<CacheHelper>(
     () => CacheHelper(getIt<SharedPreferences>()),
   );
+  getIt.registerLazySingleton<TokenInterceptor>(
+    () => TokenInterceptor(),
+  );
+  getIt.registerLazySingleton<ErrorInterceptor>(() => ErrorInterceptor());
+
+
   final dio = DioHelper().createDio();
   getIt.registerLazySingleton<Dio>(() => dio);
 
@@ -77,11 +82,9 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<RegisterUseCase>(
     () => RegisterUseCase(getIt<AuthRepository>()),
   );
-    getIt.registerLazySingleton<ResendOtpUseCase>(
+  getIt.registerLazySingleton<ResendOtpUseCase>(
     () => ResendOtpUseCase(getIt<AuthRepository>()),
   );
-
-
 
   getIt.registerLazySingleton<GetCityCubit>(
     () => GetCityCubit(
