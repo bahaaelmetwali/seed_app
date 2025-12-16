@@ -1,11 +1,14 @@
 import 'package:dio/dio.dart';
+import 'package:seed_app/core/log_out_stream.dart';
 import 'package:seed_app/core/service_locator.dart';
 import 'package:seed_app/core/utils/constants.dart';
-import 'package:seed_app/core/utils/errors/exceptions.dart';
 import 'package:seed_app/features/auth/data/data_source/local_data_source.dart';
 
 class DioHelper {
-  DioHelper();
+  final TokenInterceptor _tokenInterceptor;
+  final ErrorInterceptor _errorInterceptor;
+
+  DioHelper(this._tokenInterceptor, this._errorInterceptor);
   Dio createDio() {
     final dio = Dio(
       BaseOptions(
@@ -21,8 +24,8 @@ class DioHelper {
     );
 
     dio.interceptors.addAll([
-      getIt<TokenInterceptor>(),
-      getIt<ErrorInterceptor>(),
+      _tokenInterceptor,
+      _errorInterceptor,
       LogInterceptor(
         request: true,
         requestBody: true,
@@ -37,7 +40,6 @@ class DioHelper {
 }
 
 class TokenInterceptor extends Interceptor {
-  TokenInterceptor();
   @override
   void onRequest(
     RequestOptions options,
@@ -53,12 +55,13 @@ class TokenInterceptor extends Interceptor {
 
 class ErrorInterceptor extends Interceptor {
   @override
-  void onError(err, handler) {
+  void onError(err, handler) async {
     if (err.response?.statusCode == 401 || err.response?.statusCode == 403) {
+      await getIt<LocalDataSource>().clearToken();
+      getIt<LogoutStream>().addEvent('logout');
       handler.reject(
         DioException(
           requestOptions: err.requestOptions,
-          error: UnauthorizedException(),
           response: err.response,
         ),
       );

@@ -20,7 +20,7 @@ import 'package:seed_app/features/auth/domain/use_cases/login_use_case.dart';
 import 'package:seed_app/features/auth/domain/use_cases/register_use_case.dart';
 import 'package:seed_app/features/auth/domain/use_cases/resend_otp_use_case.dart';
 import 'package:seed_app/features/auth/domain/use_cases/verification_use_case.dart';
-import 'package:seed_app/features/log_out_stream.dart';
+import 'package:seed_app/core/log_out_stream.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../features/auth/data/repo_impl/auth_repo_impl.dart';
 
@@ -33,13 +33,13 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<CacheHelper>(
     () => CacheHelper(getIt<SharedPreferences>()),
   );
-  getIt.registerLazySingleton<TokenInterceptor>(
-    () => TokenInterceptor(),
-  );
+  getIt.registerLazySingleton<TokenInterceptor>(() => TokenInterceptor());
   getIt.registerLazySingleton<ErrorInterceptor>(() => ErrorInterceptor());
 
-
-  final dio = DioHelper().createDio();
+  final dio = DioHelper(
+    getIt<TokenInterceptor>(),
+    getIt<ErrorInterceptor>(),
+  ).createDio();
   getIt.registerLazySingleton<Dio>(() => dio);
 
   getIt.registerLazySingleton<ApiService>(() => ApiService(getIt<Dio>()));
