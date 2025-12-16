@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:seed_app/features/advertisements/domain/entities/advertisment.dart';
-import 'package:seed_app/features/advertisements/presentation/widgets/ad_widget.dart';
+import 'package:seed_app/features/advertisements/presentation/widgets/advertisments_widgets/ad_widget.dart';
 import 'package:seed_app/features/advertisements/presentation/widgets/show_all_details_section.dart';
 
 class GetAdsLoadedWidget extends StatelessWidget {
