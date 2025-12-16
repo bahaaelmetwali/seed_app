@@ -9,7 +9,6 @@ class AdvertismentModel {
   final bool isOnline;
   final String? url;
   final String? city;
-  final List<FranchiseCity> franchiseCities;
   final double? franchiseFees;
   final double? managementFranchiseFeeRatio;
   final int completeSell;
@@ -17,8 +16,6 @@ class AdvertismentModel {
   final double? partnershipRatio;
   final double? totalProjectEvaluation;
   final String status;
-  final DateTime createdAt;
-  final DateTime publishedAt;
   final bool isMine;
 
   AdvertismentModel({
@@ -30,7 +27,6 @@ class AdvertismentModel {
     required this.isOnline,
     this.url,
     this.city,
-    required this.franchiseCities,
     this.franchiseFees,
     this.managementFranchiseFeeRatio,
     required this.completeSell,
@@ -38,39 +34,29 @@ class AdvertismentModel {
     this.partnershipRatio,
     this.totalProjectEvaluation,
     required this.status,
-    required this.createdAt,
-    required this.publishedAt,
     required this.isMine,
   });
 
   factory AdvertismentModel.fromJson(Map<String, dynamic> json) {
     return AdvertismentModel(
-      id: json['id'],
-      code: json['code'],
-      name: json['name'],
-      mainImage: json['main_image'],
-      category: json['category'],
+      id: json['id'] ?? 0,
+      code: json['code'] ?? '',
+      name: json['name'] ?? '',
+      mainImage: json['main_image'] ?? '',
+      category: json['category'] ?? '',
       isOnline: json['is_online'] == 1,
-      url: json['url'],
-      city: json['city'],
-      franchiseCities: (json['franchise_cities'] as List)
-          .map((e) => FranchiseCity(id: e['id'], name: e['name']))
-          .toList(),
-      franchiseFees: json['franchise_fees'] != null
-          ? double.tryParse(json['franchise_fees'].toString())
-          : null,
-      managementFranchiseFeeRatio:
-          json['management_franchise_fee_ratio'] != null
-          ? double.tryParse(json['management_franchise_fee_ratio'].toString())
-          : null,
-      completeSell: json['complete_sell'],
-      askMoney: json['ask_money']?.toDouble(),
-      partnershipRatio: json['partnership_ratio']?.toDouble(),
-      totalProjectEvaluation: json['total_project_evaluation']?.toDouble(),
-      status: json['status'],
-      createdAt: DateTime.parse(json['created_at']),
-      publishedAt: DateTime.parse(json['published_at']),
-      isMine: json['is_mine'],
+      url: json['url'] ?? '',
+      city: json['city'] ?? '',
+      franchiseFees: _toDouble(json['franchise_fees']),
+      managementFranchiseFeeRatio: _toDouble(
+        json['management_franchise_fee_ratio'],
+      ),
+      completeSell: json['complete_sell'] ?? 0,
+      askMoney: _toDouble(json['ask_money']),
+      partnershipRatio: _toDouble(json['partnership_ratio']),
+      totalProjectEvaluation: _toDouble(json['total_project_evaluation']),
+      status: json['status'] ?? '',
+      isMine: json['is_mine'] ?? false,
     );
   }
 
@@ -89,9 +75,7 @@ class AdvertismentModel {
   }
 }
 
-class FranchiseCity {
-  final int id;
-  final String name;
-
-  FranchiseCity({required this.id, required this.name});
+double _toDouble(dynamic value) {
+  if (value == null) return 0.0;
+  return double.tryParse(value.toString()) ?? 0.0;
 }

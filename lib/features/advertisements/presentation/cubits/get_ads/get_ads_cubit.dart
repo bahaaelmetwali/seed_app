@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:seed_app/features/advertisements/domain/entities/advertisment.dart';
@@ -14,21 +13,63 @@ class GetAdsCubit extends Cubit<GetAdsState> {
   late final StreamSubscription _subscription;
 
   GetAdsCubit(this._getAdsUseCase, this.selectedCityCubit)
-    : super(GetAdsInitial()) {
+      : super(GetAdsInitial()) {
     _subscription = selectedCityCubit.stream.listen((state) {
       if (state is SelectedCitySelected) {
-        fetchAds(state.cityId);
+        refreshAds(cityId: state.cityId);
       }
     });
   }
 
-  Future<void> fetchAds(int cityId) async {
-    emit(GetAdsLoading());
-    final result = await _getAdsUseCase(page: 0, limit: 500, cityId: cityId);
+  int limit = 2;
+  int page = 1;
+  int? currentCityId;
+  bool hasMore = true;
+  bool isFetching = false;
 
-    result.fold(
-      (failure) => emit(GetAdsFailure(failure.toString())),
-      (ads) => emit(GetAdsLoaded(ads)),
+  final List<Advertisment> advertisements = [];
+
+  Future<void> fetchMoreAds() async {
+    if (!hasMore || isFetching) return;
+
+    page++;
+    await fetchAdvertisments();
+  }
+
+  Future<void> refreshAds({required int cityId}) async {
+    page = 1;
+    hasMore = true;
+    isFetching = false;
+    currentCityId = cityId;
+    advertisements.clear();
+    emit(GetAdsLoading());
+    await fetchAdvertisments();
+  }
+
+  Future<void> fetchAdvertisments() async {
+    isFetching = true;
+    final response = await _getAdsUseCase(
+      cityId: currentCityId!,
+      limit: limit,
+      page: page,
+    );
+
+    response.fold(
+      (failure) {
+        isFetching = false;
+        emit(GetAdsFailure(failure.toString()));
+      },
+      (ads) {
+        isFetching = false;
+
+        advertisements.addAll(ads);
+        hasMore = ads.length == limit;
+
+        emit(GetAdsLoaded(
+          ads: List.from(advertisements),
+          hasMore: hasMore,
+        ));
+      },
     );
   }
 

@@ -10,12 +10,12 @@ class AdvertismentRepositoryImpl implements AdvertismentRepository {
   AdvertismentRepositoryImpl(this._advertismentDataSource);
 
   @override
-  Future<Either<Failure, List<Advertisment?>>> getadvertisments({
+  Future<Either<Failure, List<Advertisment>>> getadvertisments({
     required int page,
     required int limit,
     required int cityId,
   }) {
-    return handleRequest<List<Advertisment?>>(
+    return handleRequest<List<Advertisment>>(
       request: () async {
         final response = await _advertismentDataSource.fetchAdvertisments(
           page: page,

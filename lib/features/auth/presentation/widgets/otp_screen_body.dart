@@ -136,13 +136,13 @@ class _OtpScreenBodyState extends State<OtpScreenBody> {
                                       solidText: 'لم تصلك رسالة تأكيد ؟',
                                       navigationText: 'اعادة ارسال الكود',
                                       lineWidth: 100,
-                                      onPressed: () {
+                                      onPressed: () async {
                                         if (totalSeconds == 0) {
-                                          timer?.cancel();
-                                          startTimer();
-                                          context
+                                          await context
                                               .read<ResendOtpCubit>()
                                               .resendOtp();
+                                          timer?.cancel();
+                                          startTimer();
                                         }
                                       },
                                     ),
