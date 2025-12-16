@@ -3,6 +3,7 @@ import 'package:seed_app/core/utils/api_service.dart';
 import 'package:seed_app/features/auth/data/models/auth_response_model.dart';
 import 'package:seed_app/features/auth/data/models/send_register_request_model.dart';
 import 'package:seed_app/features/auth/data/models/send_request_model.dart';
+import 'package:seed_app/features/auth/data/models/user_model.dart';
 import 'package:seed_app/features/auth/data/models/verification_model.dart';
 
 abstract class AuthRemoteDataSource {
@@ -15,6 +16,7 @@ abstract class AuthRemoteDataSource {
   Future<AuthResponseModel> register(
     SendRegisterRequestModel sendRegisterRequestModel,
   );
+  Future<UserModel> getProfile();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -62,5 +64,13 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<Unit> resendotp() async {
     await _apiService.post(endPoint: 'auth/resend-otp');
     return Future.value(unit);
+  }
+
+  @override
+  Future<UserModel> getProfile() async {
+    final response = await _apiService.get(endPoint: 'auth/profile');
+    final user = response['data'];
+    final UserModel userAccount = UserModel.fromJson(user);
+    return userAccount;
   }
 }

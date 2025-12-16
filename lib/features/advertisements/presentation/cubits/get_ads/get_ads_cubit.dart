@@ -13,7 +13,7 @@ class GetAdsCubit extends Cubit<GetAdsState> {
   late final StreamSubscription _subscription;
 
   GetAdsCubit(this._getAdsUseCase, this.selectedCityCubit)
-      : super(GetAdsInitial()) {
+    : super(GetAdsInitial()) {
     _subscription = selectedCityCubit.stream.listen((state) {
       if (state is SelectedCitySelected) {
         refreshAds(cityId: state.cityId);
@@ -61,14 +61,14 @@ class GetAdsCubit extends Cubit<GetAdsState> {
       },
       (ads) {
         isFetching = false;
+        if (ads.isEmpty) {
+          hasMore = false;
+        } else {
+          advertisements.addAll(ads);
+          hasMore = ads.length == limit;
+        }
 
-        advertisements.addAll(ads);
-        hasMore = ads.length == limit;
-
-        emit(GetAdsLoaded(
-          ads: List.from(advertisements),
-          hasMore: hasMore,
-        ));
+        emit(GetAdsLoaded(ads: List.from(advertisements), hasMore: hasMore));
       },
     );
   }

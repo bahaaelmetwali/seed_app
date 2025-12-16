@@ -6,7 +6,7 @@ import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/core/utils/styles.dart';
 import 'package:seed_app/core/widgets/custom_navigation_button.dart';
 import 'package:seed_app/core/widgets/show_custom_snack_bar.dart';
-import 'package:seed_app/features/auth/presentation/cubits/cubit/resend_otp_cubit.dart';
+import 'package:seed_app/features/auth/presentation/cubits/resend_otp/resend_otp_cubit.dart';
 import 'package:seed_app/features/auth/presentation/cubits/send_otp/send_otp_cubit.dart';
 import 'package:seed_app/features/auth/presentation/widgets/back_ground_widget.dart';
 import 'package:seed_app/features/auth/presentation/widgets/custom_pin_code_text_field.dart';
@@ -96,7 +96,7 @@ class _OtpScreenBodyState extends State<OtpScreenBody> {
                           children: [
                             BackGroundWidget(),
                             Container(
-                              height: 620.h,
+                              height: 650.h,
                               width: double.infinity,
                               decoration: BoxDecoration(
                                 color: Colors.white,

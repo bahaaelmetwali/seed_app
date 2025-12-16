@@ -12,6 +12,7 @@ class CustomPinCodeTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double fieldWidth = (MediaQuery.of(context).size.width - 80) / 4;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: PinCodeTextField(
@@ -26,7 +27,7 @@ class CustomPinCodeTextField extends StatelessWidget {
           shape: PinCodeFieldShape.box,
           borderRadius: BorderRadius.circular(12.r),
           fieldHeight: 90.r,
-          fieldWidth: 90.r,
+          fieldWidth: fieldWidth,
           activeFillColor: Colors.white,
           selectedFillColor: Colors.white,
           inactiveFillColor: Colors.white,

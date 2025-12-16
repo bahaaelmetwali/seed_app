@@ -10,6 +10,7 @@ import 'package:seed_app/features/auth/data/models/send_request_model.dart';
 import 'package:seed_app/features/auth/data/models/verification_model.dart';
 import 'package:seed_app/features/auth/domain/entity/register_request.dart';
 import 'package:seed_app/features/auth/domain/entity/send_request.dart';
+import 'package:seed_app/features/auth/domain/entity/user.dart';
 import 'package:seed_app/features/auth/domain/entity/verification.dart';
 import 'package:seed_app/features/auth/domain/repo/auth_repository.dart';
 
@@ -71,6 +72,17 @@ class AuthRepoImpl extends AuthRepository {
       request: () async {
         await _remoteDataSource.resendotp();
         return Future.value(unit);
+      },
+    );
+  }
+
+  @override
+  Future<Either<Failure, User>> getProfile() {
+    return handleRequest<User>(
+      request: () async {
+       final user = await _remoteDataSource.getProfile();
+       final userAcount = user.toEntity() ;
+        return userAcount ;
       },
     );
   }

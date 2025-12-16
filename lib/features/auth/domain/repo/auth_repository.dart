@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:seed_app/core/utils/errors/failure.dart';
 import 'package:seed_app/features/auth/domain/entity/register_request.dart';
 import 'package:seed_app/features/auth/domain/entity/send_request.dart';
+import 'package:seed_app/features/auth/domain/entity/user.dart';
 import 'package:seed_app/features/auth/domain/entity/verification.dart';
 
 abstract class AuthRepository {
@@ -9,4 +10,6 @@ abstract class AuthRepository {
   Future<Either<Failure, Unit>> sendOtp(Verification verification);
   Future<Either<Failure, Unit>> resendOtp();
   Future<Either<Failure, Unit>> register(RegisterRequest registerRequest);
+    Future<Either<Failure, User>> getProfile();
+
 }

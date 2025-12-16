@@ -30,4 +30,12 @@ class UserModel extends User {
       'is_verified': isVerified,
     };
   }
+  User toEntity(){
+    return User(id: id,
+      name: name,
+      email: email,
+      mobile: mobile,
+      image: image,
+      isVerified: isVerified,);
+  }
 }

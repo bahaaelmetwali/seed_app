@@ -41,6 +41,7 @@ class _LogincScreenBodyState extends State<LogincScreenBody> {
                   children: [
                     BackGroundWidget(),
                     Container(
+                      height: 650.h,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -90,7 +91,9 @@ class _LogincScreenBodyState extends State<LogincScreenBody> {
                             ),
                             SizedBox(height: 95.h),
                             CustomButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.go(AppRouterNames.homeUserScreen);
+                              },
                               text: 'الدخول كزائر',
                               isMainColor: false,
                             ),

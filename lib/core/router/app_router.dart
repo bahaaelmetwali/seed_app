@@ -8,7 +8,7 @@ import 'package:seed_app/features/user_navigation.dart';
 
 abstract class AppRouter {
   static final GoRouter router = GoRouter(
-    initialLocation: AppRouterNames.loginScreen,
+    initialLocation: AppRouterNames.homeUserScreen,
 
     routes: <RouteBase>[
       GoRoute(
@@ -17,7 +17,7 @@ abstract class AppRouter {
           return const LoginScreen();
         },
       ),
-         GoRoute(
+      GoRoute(
         path: AppRouterNames.registerScreen,
         builder: (BuildContext context, GoRouterState state) {
           return const RegisterScreen();
@@ -31,7 +31,7 @@ abstract class AppRouter {
         },
       ),
 
-       GoRoute(
+      GoRoute(
         path: AppRouterNames.homeUserScreen,
         builder: (context, state) => const UserNavigation(currentIndex: 0),
       ),
@@ -39,7 +39,7 @@ abstract class AppRouter {
         path: AppRouterNames.myAdvertisments,
         builder: (context, state) => const UserNavigation(currentIndex: 1),
       ),
-        GoRoute(
+      GoRoute(
         path: AppRouterNames.addAdvertisment,
         builder: (context, state) => const UserNavigation(currentIndex: 2),
       ),
