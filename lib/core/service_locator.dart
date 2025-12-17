@@ -31,12 +31,19 @@ Future<void> setupServiceLocator() async {
 
   final prefs = await SharedPreferences.getInstance();
   getIt.registerLazySingleton<SharedPreferences>(() => prefs);
+
   getIt.registerLazySingleton<CacheHelper>(
     () => CacheHelper(getIt<SharedPreferences>()),
   );
+
+  getIt.registerLazySingleton<LocalDataSource>(
+    () => LocalDataSourceImpl(getIt<CacheHelper>()),
+  );
+
   getIt.registerLazySingleton<TokenInterceptor>(
     () => TokenInterceptor(getIt<LocalDataSource>()),
   );
+
   getIt.registerLazySingleton<ErrorInterceptor>(
     () => ErrorInterceptor(getIt<LocalDataSource>(), getIt<LogoutStream>()),
   );
@@ -48,6 +55,7 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<Dio>(() => dio);
 
   getIt.registerLazySingleton<ApiService>(() => ApiService(getIt<Dio>()));
+
   getIt.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(getIt<ApiService>()),
   );
@@ -56,10 +64,6 @@ Future<void> setupServiceLocator() async {
   );
   getIt.registerLazySingleton<AdvertismentDataSource>(
     () => AdvertismentDataSourceImpl(getIt<ApiService>()),
-  );
-
-  getIt.registerLazySingleton<LocalDataSource>(
-    () => LocalDataSourceImpl(getIt<CacheHelper>()),
   );
 
   getIt.registerLazySingleton<AuthRepository>(
@@ -71,18 +75,12 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<AdvertismentRepository>(
     () => AdvertismentRepositoryImpl(getIt<AdvertismentDataSource>()),
   );
+
   getIt.registerLazySingleton<LoginUseCase>(
     () => LoginUseCase(getIt<AuthRepository>()),
   );
-
   getIt.registerLazySingleton<VerificationUseCase>(
     () => VerificationUseCase(getIt<AuthRepository>()),
-  );
-  getIt.registerLazySingleton<GetCitiesUseCase>(
-    () => GetCitiesUseCase(getIt<StaticRepository>()),
-  );
-  getIt.registerLazySingleton<GetAdsUseCase>(
-    () => GetAdsUseCase(getIt<AdvertismentRepository>()),
   );
   getIt.registerLazySingleton<RegisterUseCase>(
     () => RegisterUseCase(getIt<AuthRepository>()),
@@ -92,6 +90,12 @@ Future<void> setupServiceLocator() async {
   );
   getIt.registerLazySingleton<GetProfileUseCase>(
     () => GetProfileUseCase(getIt<AuthRepository>()),
+  );
+  getIt.registerLazySingleton<GetCitiesUseCase>(
+    () => GetCitiesUseCase(getIt<StaticRepository>()),
+  );
+  getIt.registerLazySingleton<GetAdsUseCase>(
+    () => GetAdsUseCase(getIt<AdvertismentRepository>()),
   );
 
   getIt.registerLazySingleton<GetCityCubit>(

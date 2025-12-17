@@ -37,6 +37,19 @@ class GetAdvertismentsWidget extends StatelessWidget {
             }, childCount: hasMore ? ads.length + 1 : ads.length),
           );
         }
+        if (state is GetAdsEmpty) {
+          return const SliverToBoxAdapter(child: SizedBox.shrink());
+        }
+
+        if (state is GetAdsEndReached) {
+          final ads = state.ads;
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => AdWidget(advertisment: ads[index]),
+              childCount: ads.length,
+            ),
+          );
+        }
 
         return const SliverToBoxAdapter(child: SizedBox.shrink());
       },

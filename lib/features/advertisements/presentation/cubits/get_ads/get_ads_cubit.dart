@@ -61,13 +61,22 @@ class GetAdsCubit extends Cubit<GetAdsState> {
       },
       (ads) {
         isFetching = false;
-        if (ads.isEmpty) {
+
+        if (ads.isEmpty && page == 1) {
+          advertisements.clear();
+          emit(GetAdsEmpty());
           hasMore = false;
-        } else {
-          advertisements.addAll(ads);
-          hasMore = ads.length == limit;
+          return;
         }
 
+        if (ads.isEmpty) {
+          hasMore = false;
+          emit(GetAdsEndReached(ads: List.from(advertisements)));
+          return;
+        }
+
+        advertisements.addAll(ads);
+        hasMore = ads.length == limit;
         emit(GetAdsLoaded(ads: List.from(advertisements), hasMore: hasMore));
       },
     );

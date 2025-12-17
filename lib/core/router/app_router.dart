@@ -9,20 +9,21 @@ import 'package:seed_app/features/auth/presentation/views/register_screen.dart';
 import 'package:seed_app/features/user_navigation.dart';
 
 abstract class AppRouter {
+  static bool checkTokenAvailability() {
+    final String? token = getIt<LocalDataSource>().getToken();
+    if (token != null && token.isNotEmpty) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  static final bool isTokenAvailable = checkTokenAvailability();
   static final GoRouter router = GoRouter(
-    initialLocation: AppRouterNames.loginScreen,
+    initialLocation: isTokenAvailable
+        ? AppRouterNames.homeUserScreen
+        : AppRouterNames.loginScreen,
 
-    redirect: (BuildContext context, GoRouterState state) {
-      final token = getIt<LocalDataSource>().getToken();
-
-      if ((token == null || token.isEmpty)) {
-        return AppRouterNames.loginScreen;
-      } else if (token.isNotEmpty) {
-        return AppRouterNames.homeUserScreen;
-      }
-
-      return null;
-    },
     routes: <RouteBase>[
       GoRoute(
         path: AppRouterNames.loginScreen,
