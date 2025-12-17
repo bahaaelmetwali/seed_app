@@ -33,7 +33,7 @@ class LocalDataSourceImpl implements LocalDataSource {
   @override
   Future<Unit> cacheUserType( ) async {
     final String? token = _cacheHelper.getToken();
-    if (token == null || token.isNotEmpty) {
+    if (token == null || token.isEmpty) {
       await _cacheHelper.saveuserType(userType: 'guest');
     } else {
       await _cacheHelper.saveuserType(userType: 'user');

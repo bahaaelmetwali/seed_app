@@ -12,8 +12,8 @@ class CustomLoadingShimmer extends StatelessWidget {
   final double width;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.r, vertical: 8.r),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8.r),
       child: Shimmer(
         duration: Duration(seconds: 1),
         interval: Duration(seconds: 1),
