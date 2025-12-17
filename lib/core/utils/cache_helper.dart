@@ -7,7 +7,12 @@ class CacheHelper {
   Future<void> saveToken({required String token}) async {
     await _prefs.setString('token', token);
   }
-
+   Future<void> saveuserType({required String userType}) async {
+    await _prefs.setString('userType', userType);
+  }
+  String? getuserType()  {
+    return  _prefs.getString('userType',);
+  }
   String? getToken() {
     return _prefs.getString('token');
   }

@@ -31,7 +31,9 @@ class AuthRepoImpl extends AuthRepository {
           sendMobileRequestModel,
         );
         final String token = authResponseModel.accessToken;
+
         _localDataSource.cacheToken(token);
+        _localDataSource.cacheUserType();
         return Future.value(unit);
       },
     );
@@ -61,6 +63,8 @@ class AuthRepoImpl extends AuthRepository {
         );
         final String token = authResponseModel.accessToken;
         _localDataSource.cacheToken(token);
+        _localDataSource.cacheUserType();
+
         return Future.value(unit);
       },
     );
@@ -80,9 +84,9 @@ class AuthRepoImpl extends AuthRepository {
   Future<Either<Failure, User>> getProfile() {
     return handleRequest<User>(
       request: () async {
-       final user = await _remoteDataSource.getProfile();
-       final userAcount = user.toEntity() ;
-        return userAcount ;
+        final user = await _remoteDataSource.getProfile();
+        final userAcount = user.toEntity();
+        return userAcount;
       },
     );
   }

@@ -17,6 +17,7 @@ abstract class AuthRemoteDataSource {
     SendRegisterRequestModel sendRegisterRequestModel,
   );
   Future<UserModel> getProfile();
+
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -38,8 +39,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<Unit> sendOtp(VerificationModel verificationModel) async {
-    // ignore: unused_local_variable
-    final response = await _apiService.post(
+  await _apiService.post(
       endPoint: 'auth/verify-otp',
       data: verificationModel.toJson(),
     );
@@ -73,4 +73,5 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     final UserModel userAccount = UserModel.fromJson(user);
     return userAccount;
   }
+  
 }

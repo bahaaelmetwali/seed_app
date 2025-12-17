@@ -25,7 +25,11 @@ class _UserHomeScreenState extends State<UserNavigation> {
 
   List<Widget> screens(int currentIndex) {
     return [
-      LazyPage(isSelected: currentIndex == 0, child: HomeScreen()),
+      LazyPage(
+        isSelected: currentIndex == 0,
+        requireAuth: false,
+        child: HomeScreen(),
+      ),
       LazyPage(isSelected: currentIndex == 1, child: MyAdvertisment()),
       LazyPage(isSelected: currentIndex == 2, child: AddAdvertisment()),
       LazyPage(isSelected: currentIndex == 3, child: MoreScreen()),

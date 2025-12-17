@@ -3,12 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:seed_app/core/router/app_router_names.dart';
+import 'package:seed_app/core/service_locator.dart';
 import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/core/utils/styles.dart';
 import 'package:seed_app/core/utils/validation.dart';
 import 'package:seed_app/core/widgets/custom_buttons.dart';
 import 'package:seed_app/core/widgets/custom_navigation_button.dart';
 import 'package:seed_app/core/widgets/custom_text_form_field.dart';
+import 'package:seed_app/features/auth/data/data_source/local_data_source.dart';
 import 'package:seed_app/features/auth/presentation/cubits/login/login_cubit.dart';
 import 'package:seed_app/features/auth/presentation/cubits/login/login_state.dart';
 import 'package:seed_app/features/auth/presentation/widgets/back_ground_widget.dart';
@@ -92,6 +94,7 @@ class _LogincScreenBodyState extends State<LogincScreenBody> {
                             SizedBox(height: 95.h),
                             CustomButton(
                               onPressed: () {
+                                getIt<LocalDataSource>().cacheUserType();
                                 context.go(AppRouterNames.homeUserScreen);
                               },
                               text: 'الدخول كزائر',

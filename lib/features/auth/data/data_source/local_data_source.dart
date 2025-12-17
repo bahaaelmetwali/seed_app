@@ -3,8 +3,10 @@ import 'package:seed_app/core/utils/cache_helper.dart';
 
 abstract class LocalDataSource {
   Future<Unit> cacheToken(String token);
+  Future<Unit> cacheUserType( );
   String? getToken();
   Unit clearToken();
+  String? getType();
 }
 
 class LocalDataSourceImpl implements LocalDataSource {
@@ -26,5 +28,22 @@ class LocalDataSourceImpl implements LocalDataSource {
   Unit clearToken() {
     _cacheHelper.clearUserData();
     return unit;
+  }
+
+  @override
+  Future<Unit> cacheUserType( ) async {
+    final String? token = _cacheHelper.getToken();
+    if (token == null || token.isNotEmpty) {
+      await _cacheHelper.saveuserType(userType: 'guest');
+    } else {
+      await _cacheHelper.saveuserType(userType: 'user');
+    }
+    return Future.value(unit);
+  }
+
+  @override
+  String? getType() {
+    final String? userType = _cacheHelper.getuserType();
+    return userType;
   }
 }
