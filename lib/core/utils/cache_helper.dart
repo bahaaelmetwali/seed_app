@@ -8,13 +8,11 @@ class CacheHelper {
     await _prefs.setString('token', token);
   }
 
-
-  Future<String?> getToken() async {
+  String? getToken() {
     return _prefs.getString('token');
   }
 
-
-  Future<void> clearUserData() async {
-    await _prefs.clear();
+  void clearUserData() {
+    _prefs.clear();
   }
 }

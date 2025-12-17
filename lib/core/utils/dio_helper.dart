@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:seed_app/core/log_out_stream.dart';
-import 'package:seed_app/core/service_locator.dart';
 import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/features/auth/data/data_source/local_data_source.dart';
 
 class DioHelper {
-  final TokenInterceptor _tokenInterceptor;
-  final ErrorInterceptor _errorInterceptor;
+  final TokenInterceptor tokenInterceptor;
+  final ErrorInterceptor errorInterceptor;
 
-  DioHelper(this._tokenInterceptor, this._errorInterceptor);
+  DioHelper({required this.tokenInterceptor, required this.errorInterceptor});
+
   Dio createDio() {
     final dio = Dio(
       BaseOptions(
@@ -24,8 +24,8 @@ class DioHelper {
     );
 
     dio.interceptors.addAll([
-      _tokenInterceptor,
-      _errorInterceptor,
+      tokenInterceptor,
+      errorInterceptor,
       LogInterceptor(
         request: true,
         requestBody: true,
@@ -40,12 +40,12 @@ class DioHelper {
 }
 
 class TokenInterceptor extends Interceptor {
+  final LocalDataSource _localDataSource;
+  TokenInterceptor(this._localDataSource);
+
   @override
-  void onRequest(
-    RequestOptions options,
-    RequestInterceptorHandler handler,
-  ) async {
-    final token = await getIt<LocalDataSource>().getToken();
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    final token = _localDataSource.getToken();
     if (token != null && token.isNotEmpty) {
       options.headers['Authorization'] = 'Bearer $token';
     }
@@ -54,17 +54,17 @@ class TokenInterceptor extends Interceptor {
 }
 
 class ErrorInterceptor extends Interceptor {
+  final LocalDataSource localDataSource;
+  final LogoutStream logoutStream;
+
+  ErrorInterceptor(this.localDataSource, this.logoutStream);
+
   @override
-  void onError(err, handler) async {
+  void onError(DioException err, ErrorInterceptorHandler handler) {
     if (err.response?.statusCode == 401 || err.response?.statusCode == 403) {
-      await getIt<LocalDataSource>().clearToken();
-      getIt<LogoutStream>().addEvent('logout');
-      handler.reject(
-        DioException(
-          requestOptions: err.requestOptions,
-          response: err.response,
-        ),
-      );
+      localDataSource.clearToken();
+      logoutStream.addEvent('logout');
+      handler.reject(err);
     } else {
       handler.next(err);
     }

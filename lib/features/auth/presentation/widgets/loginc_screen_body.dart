@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:seed_app/core/router/app_router_names.dart';
+import 'package:seed_app/core/service_locator.dart';
 import 'package:seed_app/core/utils/constants.dart';
 import 'package:seed_app/core/utils/styles.dart';
 import 'package:seed_app/core/utils/validation.dart';

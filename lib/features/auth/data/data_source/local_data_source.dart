@@ -3,8 +3,8 @@ import 'package:seed_app/core/utils/cache_helper.dart';
 
 abstract class LocalDataSource {
   Future<Unit> cacheToken(String token);
-  Future<String?> getToken();
-  Future<Unit> clearToken();
+  String? getToken();
+  Unit clearToken();
 }
 
 class LocalDataSourceImpl implements LocalDataSource {
@@ -17,14 +17,14 @@ class LocalDataSourceImpl implements LocalDataSource {
   }
 
   @override
-  Future<String?> getToken() async {
-    final String? token = await _cacheHelper.getToken();
+  String? getToken() {
+    final String? token = _cacheHelper.getToken();
     return token;
   }
 
   @override
-  Future<Unit> clearToken() async {
-   await _cacheHelper.clearUserData();
-    return Future.value(unit);
+  Unit clearToken() {
+    _cacheHelper.clearUserData();
+    return unit;
   }
 }

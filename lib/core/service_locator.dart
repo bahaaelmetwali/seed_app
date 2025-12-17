@@ -16,6 +16,7 @@ import 'package:seed_app/features/advertisements/presentation/cubits/selected_ci
 import 'package:seed_app/features/auth/data/data_source/local_data_source.dart';
 import 'package:seed_app/features/auth/data/data_source/auth_remote_data_source.dart';
 import 'package:seed_app/features/auth/domain/repo/auth_repository.dart';
+import 'package:seed_app/features/auth/domain/use_cases/get_profile_use_case.dart';
 import 'package:seed_app/features/auth/domain/use_cases/login_use_case.dart';
 import 'package:seed_app/features/auth/domain/use_cases/register_use_case.dart';
 import 'package:seed_app/features/auth/domain/use_cases/resend_otp_use_case.dart';
@@ -33,12 +34,16 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<CacheHelper>(
     () => CacheHelper(getIt<SharedPreferences>()),
   );
-  getIt.registerLazySingleton<TokenInterceptor>(() => TokenInterceptor());
-  getIt.registerLazySingleton<ErrorInterceptor>(() => ErrorInterceptor());
+  getIt.registerLazySingleton<TokenInterceptor>(
+    () => TokenInterceptor(getIt<LocalDataSource>()),
+  );
+  getIt.registerLazySingleton<ErrorInterceptor>(
+    () => ErrorInterceptor(getIt<LocalDataSource>(), getIt<LogoutStream>()),
+  );
 
   final dio = DioHelper(
-    getIt<TokenInterceptor>(),
-    getIt<ErrorInterceptor>(),
+    tokenInterceptor: getIt<TokenInterceptor>(),
+    errorInterceptor: getIt<ErrorInterceptor>(),
   ).createDio();
   getIt.registerLazySingleton<Dio>(() => dio);
 
@@ -84,6 +89,9 @@ Future<void> setupServiceLocator() async {
   );
   getIt.registerLazySingleton<ResendOtpUseCase>(
     () => ResendOtpUseCase(getIt<AuthRepository>()),
+  );
+  getIt.registerLazySingleton<GetProfileUseCase>(
+    () => GetProfileUseCase(getIt<AuthRepository>()),
   );
 
   getIt.registerLazySingleton<GetCityCubit>(
