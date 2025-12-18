@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:seed_app/core/router/app_router_names.dart';
-import 'package:seed_app/core/widgets/custom_buttons.dart';
-import 'package:seed_app/core/widgets/custom_loading_indicator.dart';
-import 'package:seed_app/core/widgets/show_custom_snack_bar.dart';
+import 'package:seed_app/core/ui/custom_buttons.dart';
+import 'package:seed_app/core/ui/custom_loading_indicator.dart';
+import 'package:seed_app/core/ui/show_custom_snack_bar.dart';
 import 'package:seed_app/features/auth/domain/entity/register_request.dart';
 import 'package:seed_app/features/auth/presentation/cubits/register/register_cubit.dart';
 

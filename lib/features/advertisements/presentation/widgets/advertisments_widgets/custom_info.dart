@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:seed_app/core/utils/styles.dart';
+import 'package:seed_app/core/utils/constants/styles.dart';
 
 class CustomInfo extends StatelessWidget {
   const CustomInfo({super.key, required this.text, required this.iconPath});

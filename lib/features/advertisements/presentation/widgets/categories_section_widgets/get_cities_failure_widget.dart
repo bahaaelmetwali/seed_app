@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seed_app/core/utils/styles.dart';
+import 'package:seed_app/core/utils/constants/styles.dart';
 
 class GetCitiesFailure extends StatelessWidget {
   const GetCitiesFailure({

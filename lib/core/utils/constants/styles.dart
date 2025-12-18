@@ -1,6 +1,5 @@
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-// lib/core/utils/styles.dart
 import 'package:flutter/material.dart';
 
 abstract class TextStyles {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:seed_app/constants/assets.dart';
 import 'package:seed_app/core/utils/constants/colors.dart';
-import 'package:seed_app/core/widgets/lazy_page.dart';
+import 'package:seed_app/core/ui/lazy_page.dart';
 import 'package:seed_app/features/advertisements/presentation/screens/home_screen.dart';
 import 'package:seed_app/features/other_screens/add_advertisment.dart';
 import 'package:seed_app/features/other_screens/more_screen.dart';

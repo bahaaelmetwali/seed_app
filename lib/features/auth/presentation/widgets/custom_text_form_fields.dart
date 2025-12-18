@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:seed_app/constants/assets.dart';
 import 'package:seed_app/core/utils/validation.dart';
-import 'package:seed_app/core/widgets/custom_text_form_field.dart';
+import 'package:seed_app/core/ui/custom_text_form_field.dart';
 
 class CustomTextFormFieldsSection extends StatelessWidget {
   const CustomTextFormFieldsSection({

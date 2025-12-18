@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:seed_app/core/router/app_router_names.dart';
-import 'package:seed_app/core/utils/styles.dart';
-import 'package:seed_app/core/widgets/custom_buttons.dart';
+import 'package:seed_app/core/utils/constants/styles.dart';
+import 'package:seed_app/core/ui/custom_buttons.dart';
 
 class NotAuthorizedWidget extends StatelessWidget {
   const NotAuthorizedWidget({super.key});

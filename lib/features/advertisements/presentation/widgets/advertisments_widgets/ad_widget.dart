@@ -2,8 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:seed_app/core/utils/constants/colors.dart';
-import 'package:seed_app/core/utils/styles.dart';
-import 'package:seed_app/core/widgets/custom_loading_shimmer.dart';
+import 'package:seed_app/core/utils/constants/styles.dart';
+import 'package:seed_app/core/ui/custom_loading_shimmer.dart';
 import 'package:seed_app/features/advertisements/domain/entities/advertisment.dart';
 import 'package:seed_app/features/advertisements/presentation/widgets/section_details.dart';
 

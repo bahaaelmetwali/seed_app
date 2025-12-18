@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:seed_app/core/utils/constants/colors.dart';
-import 'package:seed_app/core/utils/styles.dart';
+import 'package:seed_app/core/utils/constants/styles.dart';
 import 'package:seed_app/features/advertisements/domain/entities/city.dart';
 import 'package:seed_app/features/advertisements/presentation/cubits/selected_city.dart/selected_city_cubit.dart';
 

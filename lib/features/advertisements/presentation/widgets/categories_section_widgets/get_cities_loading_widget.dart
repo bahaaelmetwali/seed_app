@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seed_app/core/widgets/custom_loading_shimmer.dart';
+import 'package:seed_app/core/ui/custom_loading_shimmer.dart';
 
 class GetCitiesLoadingWidget extends StatelessWidget {
   const GetCitiesLoadingWidget({super.key});

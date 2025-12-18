@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seed_app/core/service_locator.dart';
 import 'package:seed_app/core/utils/constants/colors.dart';
-import 'package:seed_app/core/widgets/show_custom_snack_bar.dart';
+import 'package:seed_app/core/ui/show_custom_snack_bar.dart';
 import 'package:seed_app/features/auth/domain/use_cases/get_profile_use_case.dart';
 import 'package:seed_app/features/auth/presentation/cubits/cubit/get_profile_cubit.dart';
 

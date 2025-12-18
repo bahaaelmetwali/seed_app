@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seed_app/core/service_locator.dart';
-import 'package:seed_app/core/widgets/not_authorized_widget.dart';
+import 'package:seed_app/core/ui/not_authorized_widget.dart';
 import 'package:seed_app/features/auth/data/data_source/local_data_source.dart';
 
 class LazyPage extends StatelessWidget {

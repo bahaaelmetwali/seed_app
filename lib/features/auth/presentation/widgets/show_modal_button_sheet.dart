@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:seed_app/core/utils/styles.dart';
-import 'package:seed_app/core/widgets/custom_buttons.dart';
+import 'package:seed_app/core/utils/constants/styles.dart';
+import 'package:seed_app/core/ui/custom_buttons.dart';
 
 class ShowModalButtonSheet extends StatelessWidget {
   const ShowModalButtonSheet({super.key, required this.onTap});

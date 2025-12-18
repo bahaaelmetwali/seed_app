@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:seed_app/core/log_out_stream.dart';
-import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/core/utils/constants/constants.dart';
 import 'package:seed_app/features/auth/data/data_source/local_data_source.dart';
 
 class DioHelper {

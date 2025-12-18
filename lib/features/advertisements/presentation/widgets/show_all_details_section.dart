@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:seed_app/core/utils/constants/colors.dart';
-import 'package:seed_app/core/utils/styles.dart';
+import 'package:seed_app/core/utils/constants/styles.dart';
 
 class ShowAllDetails extends StatelessWidget {
   const ShowAllDetails({super.key, required this.details, required this.onTap});
