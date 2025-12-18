@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:seed_app/core/utils/errors/failure.dart';
+import 'package:seed_app/core/utils/error_handling/failure.dart';
 import 'package:seed_app/features/auth/domain/repo/auth_repository.dart';
 
 class ResendOtpUseCase {

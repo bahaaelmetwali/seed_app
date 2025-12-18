@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/core/utils/constants/colors.dart';
 import 'package:seed_app/core/utils/styles.dart';
 
 class CustomRichText extends StatelessWidget {
@@ -33,7 +33,7 @@ class CustomRichText extends StatelessWidget {
           TextSpan(
             text: "(تغيير الرقم)",
             style: TextStyles.textStyle18.copyWith(
-              color: Constants.kPrimaryColor,
+              color: AppColors.kPrimaryColor,
             ),
           ),
           TextSpan(
@@ -43,7 +43,7 @@ class CustomRichText extends StatelessWidget {
           TextSpan(
             text: '0$minutes:$remainingSecond',
             style: TextStyles.textStyle18.copyWith(
-              color: Constants.kPrimaryColor,
+              color: AppColors.kPrimaryColor,
             ),
           ),
         ],

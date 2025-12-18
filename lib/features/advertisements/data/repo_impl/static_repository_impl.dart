@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:seed_app/core/utils/errors/failure.dart';
-import 'package:seed_app/core/utils/handle_request.dart';
+import 'package:seed_app/core/utils/error_handling/failure.dart';
+import 'package:seed_app/core/utils/error_handling/handle_request.dart';
 import 'package:seed_app/features/advertisements/data/data_source.dart/static_data_source.dart';
 import 'package:seed_app/features/advertisements/domain/entities/city.dart';
 import 'package:seed_app/features/advertisements/domain/repo/static_repository.dart';

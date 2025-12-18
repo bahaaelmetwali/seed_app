@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seed_app/core/service_locator.dart';
-import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/core/utils/constants/colors.dart';
 import 'package:seed_app/core/widgets/show_custom_snack_bar.dart';
 import 'package:seed_app/features/auth/domain/use_cases/get_profile_use_case.dart';
 import 'package:seed_app/features/auth/presentation/cubits/cubit/get_profile_cubit.dart';
@@ -14,7 +14,7 @@ class MoreScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => GetProfileCubit(getIt<GetProfileUseCase>()),
       child: Scaffold(
-        backgroundColor: Constants.kscaffoldColor,
+        backgroundColor: AppColors.kscaffoldColor,
         body: MoreBody(),
       ),
     );

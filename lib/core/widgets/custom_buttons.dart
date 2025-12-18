@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/core/utils/constants/colors.dart';
 import 'package:seed_app/core/utils/styles.dart';
 
 class CustomButton extends StatelessWidget {
@@ -23,10 +23,10 @@ class CustomButton extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
           border: Border.all(
-            color: isMainColor ? Colors.white : Constants.kPrimaryColor,
+            color: isMainColor ? Colors.white : AppColors.kPrimaryColor,
             width: 1.5.r,
           ),
-          color: isMainColor ? Constants.kPrimaryColor : Colors.white,
+          color: isMainColor ? AppColors.kPrimaryColor : Colors.white,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Row(
@@ -35,7 +35,7 @@ class CustomButton extends StatelessWidget {
             Text(
               text,
               style: TextStyles.textStyle16.copyWith(
-                color: isMainColor ? Colors.white : Constants.kPrimaryColor,
+                color: isMainColor ? Colors.white : AppColors.kPrimaryColor,
               ),
             ),
           ],

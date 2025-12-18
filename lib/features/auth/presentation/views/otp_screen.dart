@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seed_app/core/service_locator.dart';
-import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/core/utils/constants/colors.dart';
 import 'package:seed_app/features/auth/domain/use_cases/resend_otp_use_case.dart';
 import 'package:seed_app/features/auth/domain/use_cases/verification_use_case.dart';
 import 'package:seed_app/features/auth/presentation/cubits/resend_otp/resend_otp_cubit.dart';
@@ -24,7 +24,7 @@ class OtpScreen extends StatelessWidget {
         ),
       ],
       child: Scaffold(
-        backgroundColor: Constants.kPrimaryColor,
+        backgroundColor: AppColors.kPrimaryColor,
         body: SafeArea(child: OtpScreenBody(phoneNumber: phoneNumber)),
       ),
     );

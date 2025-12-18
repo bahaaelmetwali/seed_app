@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:seed_app/core/router/app_router_names.dart';
-import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/core/utils/constants/colors.dart';
 import 'package:seed_app/core/utils/styles.dart';
 import 'package:seed_app/core/widgets/custom_navigation_button.dart'; 
 import 'package:seed_app/features/auth/presentation/cubits/register/register_cubit.dart';
@@ -61,7 +61,7 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                             Text(
                               'إنشاء حساب',
                               style: TextStyles.textStyle20.copyWith(
-                                color: Constants.kPrimaryColor,
+                                color: AppColors.kPrimaryColor,
                               ),
                             ),
                             SizedBox(height: 5.h),

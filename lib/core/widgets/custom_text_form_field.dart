@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/core/utils/constants/colors.dart';
 import 'package:seed_app/core/utils/styles.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -101,7 +101,7 @@ class CustomTextFormField extends StatelessWidget {
                 borderSide: BorderSide(
                   color: readOnly
                       ? Colors.grey.shade300
-                      : Constants.kPrimaryColor,
+                      : AppColors.kPrimaryColor,
                   width: 1.5,
                 ),
               ),

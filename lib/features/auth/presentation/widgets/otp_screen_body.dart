@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/core/utils/constants/colors.dart';
 import 'package:seed_app/core/utils/styles.dart';
 import 'package:seed_app/core/widgets/custom_navigation_button.dart';
 import 'package:seed_app/core/widgets/show_custom_snack_bar.dart';
@@ -114,7 +114,7 @@ class _OtpScreenBodyState extends State<OtpScreenBody> {
                                     Text(
                                       'تأكيد رقم الهاتف',
                                       style: TextStyles.textStyle20.copyWith(
-                                        color: Constants.kPrimaryColor,
+                                        color: AppColors.kPrimaryColor,
                                       ),
                                     ),
                                     SizedBox(height: 10.h),

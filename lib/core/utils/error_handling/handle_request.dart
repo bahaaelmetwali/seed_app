@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
-import 'package:seed_app/core/utils/errors/failure.dart';
+import 'package:seed_app/core/utils/error_handling/failure.dart';
 import 'package:seed_app/core/utils/network_info.dart';
 
 Future<Either<Failure, T>> handleRequest<T>({

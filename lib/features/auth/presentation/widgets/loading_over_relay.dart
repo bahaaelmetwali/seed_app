@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/core/utils/constants/colors.dart';
 
 class LoadingOverlay extends StatelessWidget {
   const LoadingOverlay({super.key});
@@ -9,7 +9,7 @@ class LoadingOverlay extends StatelessWidget {
     return Container(
       color: Colors.black45,
       child: const Center(child: CircularProgressIndicator(
-        color: Constants.kPrimaryColor,
+        color: AppColors.kPrimaryColor,
       )),
     );
   }

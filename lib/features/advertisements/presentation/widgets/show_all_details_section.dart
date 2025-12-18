@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/core/utils/constants/colors.dart';
 import 'package:seed_app/core/utils/styles.dart';
 
 class ShowAllDetails extends StatelessWidget {
@@ -22,7 +22,7 @@ class ShowAllDetails extends StatelessWidget {
               Text(
                 'عرض الكل',
                 style: TextStyles.textStyle14.copyWith(
-                  color: Constants.kPrimaryColor,
+                  color: AppColors.kPrimaryColor,
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -30,7 +30,7 @@ class ShowAllDetails extends StatelessWidget {
               Container(
                 height: 1.h,
                 width: 60.w,
-                color: Constants.kPrimaryColor,
+                color: AppColors.kPrimaryColor,
               ),
             ],
           ),

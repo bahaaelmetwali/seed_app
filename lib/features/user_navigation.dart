@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:seed_app/constants/assets.dart';
-import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/core/utils/constants/colors.dart';
 import 'package:seed_app/core/widgets/lazy_page.dart';
 import 'package:seed_app/features/advertisements/presentation/screens/home_screen.dart';
 import 'package:seed_app/features/other_screens/add_advertisment.dart';
@@ -55,7 +55,7 @@ class _UserHomeScreenState extends State<UserNavigation> {
           ),
 
           child: BottomNavigationBar(
-            backgroundColor: Constants.kPrimaryColor,
+            backgroundColor: AppColors.kPrimaryColor,
             currentIndex: currentIndex,
             onTap: (index) {
               setState(() {

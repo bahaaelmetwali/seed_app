@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seed_app/core/utils/constants.dart';
+import 'package:seed_app/core/utils/constants/colors.dart';
 
 class AddAdvertisment extends StatelessWidget {
   const AddAdvertisment({super.key});
@@ -7,7 +7,7 @@ class AddAdvertisment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Constants.kscaffoldColor,
+      backgroundColor: AppColors.kscaffoldColor,
       
     );  }
 }

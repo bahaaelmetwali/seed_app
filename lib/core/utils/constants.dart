@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
 
 class Constants {
-  static const kPrimaryColor = Color(0xff0073D1);
-  static const kscaffoldColor = Color(0xfff3f3f3);
+ 
   static const String baseUrl =
       'https://backend.seed.moltaqadev.com/client-api/v1/';
   static const String apiKey =
